@@ -1,0 +1,118 @@
+GIGASOUND PORTFOLIO — AUDIO TO-DO LIST
+=======================================
+Goal: go from "hobbyist with YouTube uploads" to "employer-ready sound designer"
+in 4–8 weeks of focused effort. Ordered by leverage — top items matter most.
+
+
+TIER 1 — THE CRITICAL PATH (do these first)
+-------------------------------------------
+
+[ ] 1. AUDIO REEL — 60 to 90 seconds. This is the single highest-impact asset.
+      - Pick your 4 to 6 strongest moments (not full pieces — just the best seconds of each).
+      - Order them by energy: strong hook in the first 5 seconds, peak around the middle,
+        memorable tail. No talking. Let the sound speak.
+      - Tight crossfades. No dead space. No fade-in on the opening hit.
+      - Mix for headphones (binaural moments welcome) but check on laptop speakers too.
+      - Export 48kHz / 24-bit WAV master + MP3 320kbps for the web.
+      - Save as audio/reel.mp3 in the repo and I'll wire it into the Reel section.
+
+[ ] 2. THREE ORIGINAL PORTFOLIO PIECES — fully produced, each one standalone.
+      Pick any three of these formats (variety is good):
+
+      a. BINAURAL SCENE (30–90 sec) — e.g., "walking through a rainy alley,"
+         "inside a cathedral during a storm," "busy market at dusk."
+         Demonstrates spatial placement, layering, ambience design.
+
+      b. SHORT AUDIO DRAMA (60–180 sec) — one scene. Two characters or one monologue.
+         Demonstrates dialogue editing, Foley, room tone, pacing.
+
+      c. GAME SFX PACK DEMO — 6 to 10 sounds in a row with quick silences between.
+         (UI click, heavy door, magic cast, footsteps x3, impact, ambient loop.)
+         Demonstrates SFX design range — what devs actually need.
+
+      d. TRAILER REDESIGN — pull a 30–60 sec game trailer or film clip,
+         strip the audio, rebuild from scratch. Present as "original vs. redesign"
+         split. This is THE classic portfolio piece — nobody can argue you didn't do it.
+
+      e. ACCESSIBILITY / AUDIO-FIRST UX DEMO — a 30-sec menu navigation for a
+         blind-accessible game. This is YOUR niche. Almost nobody else is making this.
+
+[ ] 3. ONE "HERO" BINAURAL PIECE — 2 to 4 minutes.
+      Your showcase. The thing you're most proud of. Heavily produced.
+      This becomes the anchor of your portfolio page.
+
+[ ] 4. PROPER AUDIO BIO REPLACEMENT (optional, if you want to redo it)
+      The current one is good. If you redo it: 45–75 sec max, lead with one sentence
+      that says what you do and who you do it for. End with a call to action
+      ("hire me / email me / check the reel").
+
+
+TIER 2 — CREDIT BUILDERS (do in parallel with Tier 1)
+------------------------------------------------------
+
+[ ] 5. JOIN ONE GAME JAM — see game-jam-guide.txt in this repo for step-by-step.
+      Target: ONE completed jam = ONE credit + potentially ONE testimonial.
+
+[ ] 6. POST ON /r/INAT AND /r/gameDevClassifieds (Reddit)
+      "Blind binaural sound designer — 9 years of practice — free/low-cost audio
+      for your indie project in exchange for credit + testimonial."
+      Expect 5–10 responses within 48 hours. Pick the 1 or 2 that look real.
+
+[ ] 7. OFFER AUDIO ON ITCH.IO FORUMS
+      itch.io has a "Recruitment" board. Same pitch. Indie devs need audio and
+      can rarely afford it.
+
+[ ] 8. COLLECT TESTIMONIALS as you go.
+      After every collaboration, ask: "Would you write me 2–3 sentences about
+      what it was like working with me? I'd love to put it on my site."
+      Most people say yes if you ask right after delivery while they're happy.
+
+
+TIER 3 — AUDIENCE + PROOF OF CRAFT (YouTube Shorts plan)
+---------------------------------------------------------
+
+[ ] 9. YOUTUBE SHORTS — "How I made this sound" series.
+      Yes, you can do these. See youtube-shorts-guide.txt for the format.
+      Goal: 1 short per week for 8 weeks = 8 shorts = a body of work
+      that proves craft + teaches + builds an audience.
+
+[ ]10. PLAYLIST YOUR EXISTING YOUTUBE WORK
+      Group your existing uploads into playlists: "Skits", "Binaural",
+      "Sound Design", "Music". Makes your channel scannable.
+
+
+TIER 4 — POLISH (do anytime)
+----------------------------
+
+[ ]11. Record 30 seconds of room tone / noise floor in your space.
+      Useful reference clip; also good to have on file.
+
+[ ]12. Build a small personal SFX library (50–100 sounds you've made).
+      Organize by category. When a dev asks "can you do X?", you can often
+      say "I already have one."
+
+[ ]13. Write a one-page PDF resume. Include: Tools (Reaper, binaural, etc.),
+      Selected work (link to site), Collaborations (as they happen),
+      Contact. Save as resume.pdf in repo, I'll link it on the site.
+
+
+WORKFLOW FOR EACH NEW PORTFOLIO PIECE
+--------------------------------------
+1. Scope it small. A "great 45-second piece" beats a "planned 3-minute piece
+   that never ships." Ship the small thing.
+2. Produce in Reaper. Master to -14 LUFS integrated for web playback.
+3. Export MP3 320kbps. Name it descriptively: binaural-alley-rain.mp3, not track3.mp3.
+4. Drop the file in the /audio folder of the repo.
+5. Tell me the filename + a 1–2 sentence description + 2–3 tags, and I'll
+   add a new work-item block to the site.
+
+
+FILE NAMING CONVENTION (do this, future-you will thank you)
+------------------------------------------------------------
+  <category>-<short-title>-<version>.mp3
+
+  binaural-rainy-alley-v2.mp3
+  sfx-pack-uisounds-v1.mp3
+  drama-the-letter-final.mp3
+  redesign-helldivers2-trailer-v1.mp3
+  reel-2026-v1.mp3

@@ -1,0 +1,140 @@
+HOW TO JOIN A GAME JAM AS A SOUND DESIGNER
+===========================================
+
+A game jam is a short game-making event (usually 48 hours to 2 weeks) where
+developers team up to build a game from scratch around a theme. They almost
+always need audio people, and audio people are always in shorter supply
+than programmers or artists. This is the single fastest way to get credits.
+
+
+WHICH JAMS TO TARGET (best for audio people)
+---------------------------------------------
+
+Tier A — big, beginner-friendly, lots of teams looking for audio:
+
+  * LUDUM DARE              https://ldjam.com
+    Runs 3x per year. Huge. Has a "jam" track (72 hours, teams allowed) and
+    a "compo" track (48 hours, solo only). You want the JAM track.
+
+  * GLOBAL GAME JAM         https://globalgamejam.org
+    Once a year (late Jan / early Feb). Worldwide. Has remote/online sites.
+
+  * GMTK GAME JAM           itch.io, runs once a year (usually August)
+    Massive. Hosted by Game Maker's Toolkit (big YouTube channel).
+    Lots of traffic = lots of chances to find teammates.
+
+Tier B — smaller, run constantly on itch.io:
+
+  * Browse https://itch.io/jams — there are dozens running at any moment.
+    Filter by "upcoming" and pick one that starts in 1–2 weeks (gives you
+    time to team up) and runs at least 72 hours (panic-friendly window).
+
+Tier C — audio-specific (worth knowing):
+
+  * GAME AUDIO JAMS — occasionally run on itch.io. Search "audio jam."
+    Whole jam is audio-focused. Great for visibility among audio peers.
+
+
+STEP-BY-STEP: YOUR FIRST JAM
+-----------------------------
+
+1. PICK A JAM 1–2 WEEKS OUT.
+   Don't try to jump into one starting tomorrow. You want lead time to find
+   a team.
+
+2. MAKE AN ITCH.IO ACCOUNT (free, takes 2 minutes).
+   itch.io is where most jams live. Sign in, join the jam's page.
+
+3. FIND THE "LOOKING FOR TEAM" CHANNEL.
+   Every jam has one:
+     - A Discord server (linked from the jam page)
+     - A forum thread on the jam page ("Team up" / "Recruitment")
+     - A dedicated itch.io community post
+
+4. POST A SHORT PITCH. Template:
+
+      "Hey! I'm Paul — sound designer with 9 years of practice. I do
+      binaural audio, SFX, dialogue editing, and music. Primary DAW: Reaper.
+      Looking to join a team for [jam name]. Can commit [X hours] over the jam.
+      Portfolio: [your site URL]
+      Discord: [your handle]
+      Quick sample: [link to one strong piece or reel]"
+
+   Post this at least ONCE in every channel that allows it. DM people whose
+   project ideas interest you.
+
+5. SCREEN TEAMMATES QUICKLY.
+   Reply to people who sound organized and have at least a rough game idea.
+   Avoid teams with no programmer or no clear scope — those tend to not ship.
+   Good signal: they ask what you need from them (asset list, timing,
+   deliverable format). Bad signal: "we'll figure it out."
+
+6. SET EXPECTATIONS UP FRONT.
+   Tell them:
+     - You're blind, you use Reaper with screen-reader accessibility.
+     - How you'll deliver files (WAV 48kHz, named clearly, in Dropbox / Drive).
+     - Your timezone + hours you'll be active.
+   Most teams won't care about the screen reader — they care that audio
+   shows up on time.
+
+7. DURING THE JAM:
+     - Ask for a SOUND LIST on day 1. "Give me a list of every sound the
+       game needs." This focuses the team and prevents scope creep.
+     - Deliver in BATCHES, not at the end. Day 2: UI + core gameplay sounds.
+       Day 3: music + polish. This way if you run out of time, the game still
+       has audio.
+     - Keep a file: credits.txt. Write your name + role ("Sound design and
+       music by Paul Seigneur") and make sure the team uses it in the final
+       game page.
+
+8. AFTER THE JAM:
+     - Get the final game's itch.io page link. That's your credit.
+     - Ask each teammate for a 2–3 sentence testimonial. Do it within 48
+       hours of submission while they're still happy.
+     - Add the jam entry to your portfolio site as a work item, with a
+       link to the itch.io page and an embedded audio sample from the game.
+
+
+SCOPING RULES (protects you from disaster)
+-------------------------------------------
+
+  * 48-hour jam → aim for 6–10 SFX + 1 short music loop. No more.
+  * 72-hour jam → 10–15 SFX + 1–2 music tracks + basic ambience.
+  * Week-long jam → full soundscape, multiple music tracks, polished mix.
+
+  If the team wants more than this, push back. "I can do 8 sounds really
+  well or 20 sounds badly. Which do you want?" is a fair and professional
+  question.
+
+
+RED FLAGS IN POTENTIAL TEAMMATES
+---------------------------------
+
+  * Vague idea, no game design doc, no plan.
+  * More than 4 people on the team (too many cooks in 48 hours).
+  * Someone who says "we'll use royalty-free music for now" — they won't
+    value your work.
+  * No programmer. Without one, nothing ships.
+
+
+YOUR FIRST POST — FILL IN AND USE
+----------------------------------
+
+Subject: Sound designer looking for a team — binaural / SFX / music
+
+Hey all — I'm Paul, a sound designer specializing in binaural audio and
+accessibility-focused sound design. 9 years of practice. I work in Reaper
+and can deliver SFX, ambience, dialogue edits, and short original music.
+
+I'm looking for a team for [JAM NAME]. I can commit roughly [HOURS] across
+the jam and I'm in [TIMEZONE].
+
+Portfolio: https://gigasound-project.github.io  (or your actual URL)
+Sample piece: [LINK TO ONE STRONG FILE OR YOUR YOUTUBE]
+Discord: [YOUR HANDLE]
+
+Drop a reply or DM if your project needs audio and sounds like a fit!
+
+
+THAT'S IT. One jam done = one credit + (probably) one testimonial + (maybe)
+ongoing collaborators. Do two or three and you have a portfolio section.

@@ -1,0 +1,149 @@
+YOUTUBE SHORTS FOR A BLIND SOUND DESIGNER
+==========================================
+
+Your core question: "Can I get away with just audio on screen?"
+
+Short answer: NO on Shorts — but you don't need to see to make great visuals,
+and the visuals don't need to be complicated. Here's how this actually works.
+
+
+WHY AUDIO-ONLY DOESN'T WORK ON SHORTS
+--------------------------------------
+
+A huge chunk of Shorts viewers watch with sound OFF or at very low volume,
+at least for the first 2 seconds. YouTube's algorithm also penalizes videos
+where people swipe away fast. If the screen is a static image for 30 seconds,
+people swipe. If there are captions and SOMETHING moving, they stay.
+
+So: you need captions and at least some visual motion. BUT those visuals
+can be extremely simple and fully accessible for you to produce.
+
+
+THE 5 SHORT FORMATS THAT WORK FOR SOUND DESIGNERS
+--------------------------------------------------
+
+Pick any of these — they're all accessible to produce without sighted help,
+because the visuals are generated FROM the audio or from text, not filmed.
+
+1. WAVEFORM / SPECTROGRAM SHORT
+   Show the audio's own waveform bouncing as it plays. Add big text captions.
+   - Tools: Reaper renders a waveform image. OBS or CapCut can generate
+     animated waveforms automatically from an audio track.
+   - Screen content: waveform + caption text + your logo. That's it.
+   - Zero visual-editing skill needed. The audio drives the visual.
+
+2. BEFORE / AFTER
+   "Here's the raw recording [plays]. Here's the designed version [plays]."
+   Split screen with two waveforms, big text "BEFORE" and "AFTER."
+   - This is arguably the single most viral sound-design format on Shorts.
+     Viewers love the transformation.
+
+3. TEXT-ON-SCREEN TUTORIAL
+   30 to 60 seconds, one tip per short. Big bold text appears in sync with
+   your voiceover. Example: "Want thicker footsteps? Layer 3 things: impact,
+   texture, and a sub." Three title cards, one line each.
+   - Visual is just text on a solid color background. Done in CapCut in
+     5 minutes. CapCut has full screen-reader support on mobile.
+
+4. "GUESS THE SOUND"
+   Play a sound. 3-second countdown. Reveal what it's actually made of.
+   ("This is a lion roar. It's actually: a cat meow + a subway train + a
+   cardboard tube, all pitched down.")
+   - Visual: countdown numbers, then the answer as text. Extremely simple.
+
+5. RECORD-A-SOUND SHORT
+   Voiceover: "I recorded my coffee maker and turned it into a spaceship
+   engine." Then play the source, then play the designed result. Captions
+   throughout.
+   - Visual: text cards. Optionally a sighted friend can film you at the
+     coffee maker in 30 seconds, but it's not required.
+
+
+HOW TO MAKE THESE WITHOUT SIGHTED HELP
+---------------------------------------
+
+  * CapCut (mobile) — has VoiceOver / TalkBack support. You can add text,
+    pick templates, and export. Blind content creators use it regularly.
+
+  * Descript — fully accessible transcription-based video editor. You edit
+    the video by editing its transcript text. Perfect for tutorial-style
+    shorts with voiceover. Generates captions automatically.
+
+  * Reaper + static image — render your audio as a video with a single
+    static image (logo + title text) + burned-in captions. Reaper can do
+    this via Video processor, or you can export audio and mux it with
+    FFmpeg:
+
+        ffmpeg -loop 1 -i cover.jpg -i audio.mp3 -c:v libx264 -tune stillimage \
+               -c:a aac -b:a 192k -pix_fmt yuv420p -shortest out.mp4
+
+    Ask a sighted friend ONCE to help you make 3 reusable title-card
+    templates (1080x1920, with your logo and a big text placeholder).
+    After that you can reuse them forever.
+
+  * Auto-captions — YouTube generates them automatically after upload.
+    ALWAYS review them (have a screen reader read them back) because the
+    auto-captions mishear technical terms constantly. You can edit them in
+    YouTube Studio. Good captions = bigger audience + accessibility for
+    deaf viewers too.
+
+
+WHAT GOES ON SCREEN — THE MINIMUM VIABLE VISUAL
+-----------------------------------------------
+
+Every short needs these three layers. That's it:
+
+  1. BACKGROUND — solid dark color OR your logo OR a waveform animation.
+     Static is fine. Moving slightly is better.
+
+  2. CAPTION — large text, high contrast, matching what you're saying.
+     Non-negotiable. Drives retention.
+
+  3. BRAND MARK — your logo + handle in a corner, small, always there.
+     Free advertising on every repost.
+
+
+GOLDEN RULES (read before you start)
+-------------------------------------
+
+  * HOOK IN THE FIRST SECOND. Don't say "Hi everyone, today we're going to
+    talk about..." Start with the sound or the claim. "This gunshot is
+    actually a slammed door."
+  * UNDER 60 SECONDS, ideally 25–40. Algorithm loves tight.
+  * ONE IDEA PER SHORT. Don't teach three things. Teach one.
+  * END WITH A QUESTION or a "follow for more." Drives comments + follows.
+  * CONSISTENT SCHEDULE beats quality spikes. 1 per week for 2 months is
+    better than 5 in one week and then silence.
+
+
+YOUR FIRST 4 SHORTS (a ready-made plan)
+----------------------------------------
+
+Short 1 — "I've been doing sound design for 9 years. Here's my single best
+           tip." (format: text tutorial — low risk, introduces you)
+
+Short 2 — "Guess what this sound is." (play something weird, reveal the
+           layers in a before/after)
+
+Short 3 — "How to make footsteps sound heavy." (text tutorial, 3 tips)
+
+Short 4 — "I'm blind and I design 3D audio. Here's what that sounds like."
+           (binaural demo short — plays to YOUR unique angle. This one
+           could pop.)
+
+Ship these 4 over 4 weeks. Measure which gets the most views. Double down
+on that format. After 8 weeks you'll know what works for you.
+
+
+HONEST CALL ON "AUDIO-ONLY"
+---------------------------
+
+If the thought of visuals is stopping you from starting at all — upload
+audio-only with a static image as YouTube videos (not Shorts). They won't
+perform as well but they'll exist, and they count as portfolio pieces.
+It is infinitely better to have 10 audio-only uploads than 0 polished Shorts.
+
+Then once you have momentum and maybe a sighted collaborator, convert your
+best ones into proper Shorts.
+
+Start ugly. Iterate. Ship.
