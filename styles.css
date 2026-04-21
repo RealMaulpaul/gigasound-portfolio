@@ -1,0 +1,201 @@
+:root {
+  --bg: #0e0f12;
+  --panel: #17191f;
+  --panel-2: #1e2129;
+  --text: #e8e8ec;
+  --muted: #a1a4ad;
+  --accent: #7c8cff;
+  --accent-hover: #5a6dff;
+  --border: #2a2d36;
+  --max-w: 860px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+  font-size: 17px;
+}
+h1, h2, h3 {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color .15s ease, color .15s ease;
+}
+a:hover, a:focus { border-bottom-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.skip-link {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--accent); color: #fff; padding: .6rem 1rem; z-index: 100;
+}
+.skip-link:focus { left: 1rem; top: 1rem; }
+
+/* Site-wide top bar for cross-page nav */
+.site-bar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: .85rem 1.25rem;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  font-size: .95rem;
+}
+.site-bar .brand {
+  color: var(--text); font-weight: 600; border: none;
+  display: inline-flex; align-items: center; gap: .5rem;
+}
+.site-bar .brand img { height: 28px; width: auto; }
+.site-bar nav { display: flex; gap: 1.25rem; }
+.site-bar nav a { color: var(--muted); }
+.site-bar nav a:hover, .site-bar nav a[aria-current="page"] { color: var(--text); }
+
+header.hero {
+  padding: 4rem 1.5rem 3rem;
+  background: linear-gradient(180deg, #1a1d27 0%, var(--bg) 100%);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+header.hero img.logo { width: 140px; height: auto; margin-bottom: 1rem; }
+header.hero h1 { font-size: 2.4rem; margin: .5rem 0 .25rem; }
+header.hero .tagline { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.5rem; }
+
+nav.primary {
+  display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem;
+  margin-top: 1rem; font-size: .95rem;
+}
+nav.primary a { color: var(--muted); }
+nav.primary a:hover { color: var(--text); }
+
+main { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+section:last-of-type { border-bottom: none; }
+section h2 { font-size: 1.6rem; margin: 0 0 1rem; }
+section p { color: var(--text); }
+section .lede { color: var(--muted); margin-top: -.25rem; margin-bottom: 1.5rem; }
+
+.reel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+.reel audio { width: 100%; margin-top: .75rem; }
+
+.work-grid { display: grid; gap: 1rem; }
+.work-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+}
+.work-item h3 { margin: 0 0 .25rem; font-size: 1.15rem; }
+.work-item .meta { color: var(--muted); font-size: .9rem; margin: 0 0 .75rem; }
+.work-item p { margin: .5rem 0; }
+.work-item audio { width: 100%; margin-top: .5rem; }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+.tag {
+  font-size: .75rem; color: var(--muted);
+  background: var(--panel-2); border: 1px solid var(--border);
+  padding: .2rem .55rem; border-radius: 999px;
+}
+
+.about p + p { margin-top: .85rem; }
+.tools { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.tools .tag { font-size: .85rem; }
+
+.contact form {
+  display: flex; flex-direction: column; gap: .75rem;
+  max-width: 500px;
+}
+.contact label {
+  font-size: .9rem; color: var(--muted);
+  display: flex; flex-direction: column; gap: .35rem;
+}
+.contact input[type="email"], .contact textarea {
+  padding: .7rem .9rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+.contact input[type="email"]:focus, .contact textarea:focus {
+  outline: none; border-color: var(--accent);
+}
+.contact textarea { min-height: 140px; resize: vertical; }
+.contact button {
+  align-self: flex-start;
+  padding: .7rem 1.6rem;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 6px;
+  font-size: 1rem; font-weight: 500;
+  cursor: pointer;
+  transition: background .15s ease;
+}
+.contact button:hover, .contact button:focus { background: var(--accent-hover); }
+
+.links-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+.links-list li { padding: .5rem 0; }
+
+/* Router landing page */
+.router-main {
+  min-height: calc(100vh - 60px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 3rem 1.5rem; text-align: center;
+}
+.router-hero img.logo { width: 160px; height: auto; margin-bottom: 1rem; }
+.router-hero h1 { font-size: 2.6rem; margin: .5rem 0 .25rem; }
+.router-hero .tagline { color: var(--muted); font-size: 1.15rem; margin: 0 0 2.5rem; }
+.router-cards {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: 1fr;
+  max-width: 760px; width: 100%;
+}
+@media (min-width: 720px) { .router-cards { grid-template-columns: 1fr 1fr; } }
+.router-card {
+  display: block;
+  padding: 2rem 1.75rem;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  text-align: left;
+  transition: border-color .15s ease, transform .15s ease, background .15s ease;
+}
+.router-card:hover, .router-card:focus {
+  border-color: var(--accent);
+  background: var(--panel-2);
+  transform: translateY(-2px);
+  border-bottom: 1px solid var(--accent);
+}
+.router-card h2 {
+  margin: 0 0 .5rem; font-size: 1.4rem;
+  color: var(--accent);
+}
+.router-card p { margin: 0; color: var(--muted); }
+.router-card .arrow { display: inline-block; margin-top: 1rem; color: var(--accent); font-weight: 500; }
+
+footer {
+  text-align: center; padding: 2.5rem 1.5rem;
+  color: var(--muted); font-size: .9rem;
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  header.hero { padding: 3rem 1rem 2rem; }
+  header.hero h1 { font-size: 1.9rem; }
+  .router-hero h1 { font-size: 2rem; }
+  section { padding: 2.25rem 0; }
+  .site-bar { padding: .75rem 1rem; }
+  .site-bar nav { gap: .9rem; }
+}
