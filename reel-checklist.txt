@@ -1,0 +1,153 @@
+AUDIO REEL CHECKLISTS
+======================
+Two reels to build: Narrative / Binaural Reel and Game SFX Reel.
+A third (Accessibility Audio Reel) is optional and can come later.
+
+Work through the sections in order. Don't skip prep — a good reel is
+mostly decided before you touch the timeline.
+
+
+===========================================
+REEL 1 — NARRATIVE / BINAURAL REEL (60–90 sec)
+===========================================
+For: sound design, audio drama, cinematic, and binaural hiring.
+
+---- PREP ----
+[ ] List every piece you might pull from (YouTube catalog + any raw sessions).
+[ ] Listen through each one and timestamp "gold" moments — the 2–10 second
+    chunks where the SOUND DESIGN itself is the star (not the joke/voice).
+[ ] Flag your single strongest binaural moment. That's your OPENER.
+[ ] Make sure you have variety across these buckets:
+      [ ] One strong binaural/spatial moment
+      [ ] One loud impact or cinematic hit
+      [ ] One textured ambience or environment
+      [ ] One dense layered moment (lots going on)
+      [ ] One sparse/quiet moment (so the loud ones feel loud)
+      [ ] One transition or riser-to-drop moment
+[ ] If any bucket above is empty, record a 5–10 second piece to fill it.
+    Small, targeted, just for the reel.
+
+---- STRUCTURE TARGET (75 sec example) ----
+[ ] 0:00–0:08  OPENER — strongest binaural moment. Hook in the first second.
+[ ] 0:08–0:25  Three to four quick hits (impacts, transitions, short SFX).
+[ ] 0:25–0:40  One EXTENDED piece that breathes (full ambience or mini scene).
+[ ] 0:40–0:55  Cluster of quick hits, different flavor than the first cluster.
+[ ] 0:55–1:10  Second EXTENDED piece, contrasting the first.
+[ ] 1:10–1:15  Sonic logo / "GigaSound Project" outro tag.
+
+Total: 10–15 distinct moments. Mix of short punches and 5–10 sec holds.
+
+---- BUILD IN REAPER ----
+[ ] New project. 48kHz / 24-bit.
+[ ] One track per clip at first — makes trimming easier.
+[ ] Trim each clip RUTHLESSLY to just the gold seconds.
+[ ] Arrange in intended order.
+[ ] Crossfade between every clip (30–100ms usually). No hard cuts unless
+    a hard cut is the point.
+[ ] Add a subtle low-end bed or quiet ambience UNDER the whole thing to
+    glue clips together. Keep it at about -30 dB, barely noticeable.
+[ ] Add a short riser or whoosh into each "extended" section for flow.
+[ ] Record or design your outro sonic logo (2–3 sec).
+
+---- MIX PASS ----
+[ ] Headphone check + laptop speaker check + phone speaker check.
+[ ] No clip peaks above -1 dBTP (true peak).
+[ ] Master to around -14 LUFS integrated (web/streaming standard).
+[ ] No sudden volume jumps that'd make a listener flinch.
+[ ] Binaural moments still feel spatial when you sum to mono briefly
+    (nothing vanishes). If something vanishes, widen it differently.
+
+---- EXPORT ----
+[ ] Master WAV 48kHz / 24-bit — archive copy, never gets uploaded.
+[ ] MP3 320 kbps — for the website.
+[ ] Filename: reel-narrative-YYYY-vX.mp3   (e.g. reel-narrative-2026-v1.mp3)
+[ ] Drop it in the /audio folder of the repo.
+
+---- SANITY CHECK BEFORE SHIPPING ----
+[ ] Hook works in the first second. (Skip to 0:00 — does it grab?)
+[ ] Under 90 seconds. Over that, cut something.
+[ ] Sounds good at laptop-speaker volume, not just headphones.
+[ ] You'd be proud if a hiring manager heard this cold with no context.
+
+
+===========================================
+REEL 2 — GAME SFX REEL (45–75 sec)
+===========================================
+For: indie game dev hiring, jam teams, NVDA/audio-game work.
+
+Different vibe from Reel 1. This is UTILITARIAN. Dry, clean, shows off
+the raw asset quality. Think "sound library demo," not "cinematic montage."
+
+---- PREP ----
+[ ] Gather every game sound you've made, including the ones for your
+    blind friends' games. NAME those projects — that's real credit.
+[ ] Sort into categories. Aim to cover at least 5 of these:
+      [ ] UI (clicks, hovers, confirms, denies, menu open/close)
+      [ ] Movement (footsteps on 2–3 surfaces, jump, land)
+      [ ] Impacts (hit, punch, crash, break)
+      [ ] Weapons / abilities (swing, cast, shoot, reload)
+      [ ] Pickups / notifications (coin, level up, quest complete)
+      [ ] Ambience loops (wind, cave, indoor room tone)
+      [ ] Creatures / characters (grunts, growls, voice barks)
+      [ ] Interactive objects (doors, chests, switches, puzzle solved)
+
+---- STRUCTURE ----
+[ ] Group sounds BY CATEGORY. All UI together, all impacts together, etc.
+[ ] 0.3–0.5 second of silence between individual sounds.
+[ ] 1–2 seconds of silence between categories.
+[ ] Optional: a quiet voiceover labelling each category
+    ("UI." ... plays UI sounds ... "Impacts." ... plays impacts ...)
+    This helps listeners follow along — common in game audio reels.
+[ ] Short intro (2 sec) naming yourself/brand.
+[ ] Short outro (2 sec) with contact or brand tag.
+
+---- BUILD IN REAPER ----
+[ ] New project. 48kHz / 24-bit.
+[ ] One item per sound, spaced by silence. Don't crossfade — you WANT
+    to hear each sound cleanly in isolation.
+[ ] Normalize each sound to about -6 dB for consistency.
+[ ] If recording category labels, match voice level to sound level
+    (voice slightly quieter than peaks is normal).
+
+---- MIX PASS ----
+[ ] Every sound clean, no peaks above -1 dBTP.
+[ ] Consistent loudness across sounds — no "that one was way louder."
+[ ] Master to around -14 LUFS integrated.
+[ ] Check on laptop speakers — game devs often audition on laptops.
+
+---- EXPORT ----
+[ ] Master WAV.
+[ ] MP3 320 kbps.
+[ ] Filename: reel-gamesfx-YYYY-vX.mp3
+[ ] Drop it in /audio.
+
+---- WRITE A "SHIPPED ON" CREDIT LINE ----
+[ ] List the games the sounds came from:
+      e.g. "Sounds shown: [Game Title 1] (audio-first game for blind players,
+      2024), [Game Title 2] (2025), original library samples."
+[ ] Save this as a text block in your notes — you'll paste it into the
+    portfolio page when I add this reel as a work item.
+
+
+===========================================
+SHARED "DON'T FORGET" LIST
+===========================================
+[ ] Back up the Reaper project file before export.
+[ ] Listen one more time with fresh ears the day AFTER finishing before
+    you call it final. Tired ears miss things.
+[ ] Keep the first version. Even if v2 is better, v1 has ideas you might
+    want to revisit.
+[ ] When the MP3 is in /audio and named cleanly, tell me the filename
+    plus a 1–2 sentence blurb + 2–3 tags, and I'll wire it into the
+    portfolio page's Reel and Work sections.
+
+
+===========================================
+ORDER OF OPERATIONS
+===========================================
+1. Build Reel 1 (Narrative / Binaural) first. This is the higher-leverage
+   reel because it shows your unique skills.
+2. THEN build Reel 2 (Game SFX). You already have the raw material from
+   your friends' games, so this will go faster.
+3. Ship both to the portfolio before starting any new pieces. Done beats
+   perfect. You can always release v2 later.
