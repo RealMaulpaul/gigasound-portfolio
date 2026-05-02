@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>soundStrider Random Ambience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fira Mono', 'Consolas', monospace;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 0;
+            border-bottom: 1px solid #222;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(90deg, #FF00F7, #00FFFF, #FFFF00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+
+        /* Visible keyboard focus indicators (WCAG 2.4.7) */
+        button:focus-visible,
+        select:focus-visible,
+        input:focus-visible,
+        .disclosure-btn:focus-visible {
+            outline: 2px solid #FFFF00;
+            outline-offset: 2px;
+        }
+        input[type="range"]:focus-visible::-webkit-slider-thumb {
+            box-shadow: 0 0 0 3px #FFFF00;
+        }
+
+        /* Screen-reader-only utility */
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px; height: 1px;
+            padding: 0; margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Conductor panel */
+        .conductor-panel {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .conductor-panel h2 {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .conductor-panel .disclosure-btn {
+            color: #00FFAA;
+            border-color: #003a2a;
+        }
+        .conductor-panel .disclosure-btn:hover {
+            border-color: #00FFAA;
+        }
+        .conductor-content {
+            display: none;
+            margin-top: 14px;
+        }
+        .conductor-content.visible { display: block; }
+        .conductor-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #222;
+        }
+        .conductor-mode {
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 6px 10px;
+            display: inline-flex;
+            gap: 12px;
+            color: #ccc;
+            font-size: 0.8rem;
+        }
+        .conductor-mode label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .conductor-mode input[type="radio"] { accent-color: #00FFAA; }
+        .conductor-status {
+            color: #888;
+            font-size: 0.75rem;
+            font-family: 'Fira Mono', monospace;
+        }
+        .conductor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 6px;
+            max-height: 360px;
+            overflow-y: auto;
+            padding: 4px 2px;
+        }
+        .conductor-grid h3 {
+            grid-column: 1 / -1;
+            color: #666;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 8px 0 2px;
+        }
+        .entity-btn {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #ccc;
+            padding: 7px 10px;
+            font-size: 0.72rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: none;
+            letter-spacing: 0;
+            text-align: left;
+            transition: all 0.15s ease;
+            position: relative;
+        }
+        .entity-btn:hover {
+            background: #222;
+            border-color: #00FFAA;
+            transform: none;
+            box-shadow: none;
+        }
+        .entity-btn.pinned {
+            border-color: #FFD700;
+            background: #2a2410;
+            color: #FFD700;
+        }
+        .entity-btn.banned {
+            border-color: #aa3333;
+            color: #885555;
+            background: #1a1010;
+            text-decoration: line-through;
+        }
+        .entity-btn .count {
+            float: right;
+            color: #00FFAA;
+            font-size: 0.7rem;
+        }
+        .entity-btn.pinned .count { color: #FFD700; }
+        .entity-btn.banned .count { display: none; }
+        .conductor-hint {
+            color: #666;
+            font-size: 0.72rem;
+            margin-top: 12px;
+        }
+        kbd {
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 3px;
+            padding: 1px 6px;
+            font-family: 'Fira Mono', monospace;
+            font-size: 0.78em;
+            color: #ddd;
+        }
+
+        /* Shortcuts help modal */
+        .shortcuts-help {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .shortcuts-help.visible { display: flex; }
+        .shortcuts-help-inner {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 28px;
+            max-width: 420px;
+            width: 100%;
+        }
+        .shortcuts-help-inner h2 {
+            color: #FFFF00;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+        .shortcuts-help-inner dl {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 10px 16px;
+            margin-bottom: 18px;
+        }
+        .shortcuts-help-inner dt {
+            text-align: right;
+            align-self: center;
+        }
+        .shortcuts-help-inner dd {
+            color: #ccc;
+            font-size: 0.85rem;
+            align-self: center;
+        }
+
+        .generation-settings {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .setting-group > label {
+            color: #aaa;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .setting-group select {
+            min-width: 110px;
+        }
+        .generation-settings button {
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Disclosure (collapse/expand) button — replaces clickable h2s */
+        .disclosure-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: inherit;
+            padding: 8px 14px;
+            font-family: inherit;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+        .disclosure-btn:hover {
+            background: #1a1a1a;
+            border-color: #555;
+            transform: none;
+            box-shadow: none;
+        }
+        .disclosure-btn .caret {
+            font-size: 0.75rem;
+            color: #888;
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+        .disclosure-btn[aria-expanded="true"] .caret {
+            transform: rotate(45deg);
+        }
+
+        .main-controls {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, #FF00F7, #FF0069);
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 0, 247, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        button.secondary {
+            background: linear-gradient(135deg, #00FFFF, #0088FF);
+        }
+
+        button.secondary:hover {
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+        }
+
+        button.stop {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+        }
+
+        button.stop:hover {
+            box-shadow: 0 5px 20px rgba(255, 68, 68, 0.4);
+        }
+
+        select {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            border-radius: 8px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        select:hover, select:focus {
+            border-color: #FF00F7;
+        }
+
+        select option {
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .radar-section {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            align-items: stretch;
+        }
+
+        .radar-container {
+            background: #111;
+            border-radius: 12px;
+            padding: 16px;
+            flex: 0 0 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #radar {
+            width: 288px;
+            height: 288px;
+            display: block;
+        }
+
+        .info-panel {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .info-panel h2 {
+            color: #FF00F7;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #blendDescription {
+            color: #888;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        #blendDescription .env-tag {
+            display: inline-block;
+            background: #222;
+            color: #00FFFF;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin: 2px;
+            font-size: 0.75rem;
+        }
+
+        #blendDescription .param-line {
+            margin-top: 6px;
+            color: #555;
+        }
+
+        .controls-panel {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .controls-panel h2 {
+            color: #00FFFF;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .sliders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .slider-label span:first-child {
+            color: #777;
+        }
+
+        .slider-label span:last-child {
+            color: #00FFFF;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            background: #333;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #FF00F7, #FF0069);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .layer-volumes-panel {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .layer-volumes-panel h2 {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .layer-volumes-panel .disclosure-btn {
+            color: #FFFF00;
+            border-color: #443a00;
+        }
+        .layer-volumes-panel .disclosure-btn:hover {
+            border-color: #FFFF00;
+        }
+
+        .layer-volumes-grid {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .layer-volumes-grid.visible {
+            display: grid;
+        }
+
+        .audition-panel {
+            background: #111;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .audition-panel h2 {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .audition-panel .disclosure-btn {
+            color: #FF8800;
+            border-color: #4a2900;
+        }
+        .audition-panel .disclosure-btn:hover {
+            border-color: #FF8800;
+        }
+
+        .audition-content {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .audition-content.visible {
+            display: block;
+        }
+
+        .audition-content h3 {
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 12px 0 8px;
+        }
+
+        .audition-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .audition-btn {
+            background: #222;
+            border: 1px solid #333;
+            color: #aaa;
+            padding: 6px 12px;
+            font-size: 0.7rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            text-transform: none;
+            letter-spacing: 0;
+            transition: all 0.2s ease;
+        }
+
+        .audition-btn:hover {
+            background: #333;
+            color: #fff;
+            border-color: #FF8800;
+            transform: none;
+            box-shadow: 0 0 8px rgba(255, 136, 0, 0.3);
+        }
+
+        .audition-btn.audition-layer {
+            background: #1a1a2a;
+            border-color: #444;
+            color: #00FFFF;
+        }
+
+        .audition-btn.audition-layer:hover {
+            border-color: #00FFFF;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+        }
+
+        .specimen-name {
+            text-align: center;
+            padding: 12px 0;
+            margin-bottom: 20px;
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .specimen-name .name-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            letter-spacing: 2px;
+            color: #FFFF00;
+            text-shadow: 0 0 12px rgba(255, 255, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .specimen-name .name-text.visible {
+            opacity: 1;
+        }
+
+        .specimen-name .name-placeholder {
+            color: #888;
+            font-size: 0.8rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .key-text {
+            font-size: 0.85rem;
+            color: #00FFFF;
+            letter-spacing: 1px;
+            margin-left: 16px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .key-text.visible {
+            opacity: 1;
+        }
+
+        .headphone-notice {
+            text-align: center;
+            color: #555;
+            font-size: 0.75rem;
+            padding: 16px;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        @media (max-width: 700px) {
+            .radar-section {
+                flex-direction: column;
+            }
+
+            .radar-container {
+                flex: none;
+                width: 100%;
+            }
+
+            #radar {
+                width: 100%;
+                max-width: 288px;
+                height: auto;
+                aspect-ratio: 1;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>soundStrider Random Ambience</h1>
+            <p class="subtitle">HRTF 3D spatial ambience generator - use headphones</p>
+        </header>
+
+        <div class="main-controls" role="group" aria-label="Playback controls">
+            <button id="playBtn" onclick="togglePlay()" aria-label="Play or pause ambience">Play</button>
+            <button id="regenerateBtn" class="secondary" onclick="regenerate()" aria-label="Regenerate a new soundscape">Regenerate</button>
+            <button id="stopBtn" class="stop" onclick="stopAll()" disabled aria-label="Stop ambience">Stop</button>
+            <button id="helpBtn" class="secondary" onclick="toggleShortcutsHelp()" aria-label="Show keyboard shortcuts">?</button>
+            <label for="worldSelect" class="visually-hidden">Choose a world or music mode</label>
+            <select id="worldSelect" onchange="onWorldChange(this.value)">
+                <option value="random">Random World</option>
+                <option value="mixed">Mixed World</option>
+                <optgroup label="── Worlds ──">
+                <option value="aquatic">Aquatic</option>
+                <option value="astral">Astral</option>
+                <option value="beach">Beach</option>
+                <option value="classic">Classic</option>
+                <option value="desert">Desert</option>
+                <option value="elemental">Elemental</option>
+                <option value="forest">Forest</option>
+                <option value="industrial">Industrial</option>
+                <option value="limbic">Limbic</option>
+                <option value="mainframe">Mainframe</option>
+                <option value="mountain">Mountain</option>
+                <option value="pulse">Pulse</option>
+                <option value="storm">Storm</option>
+                <option value="trance">Trance</option>
+                <option value="tundra">Tundra</option>
+                <option value="urban">Urban</option>
+                </optgroup>
+                <optgroup label="── Music Modes ──">
+                <option value="berlin">Berlin School</option>
+                <option value="dub">Dub</option>
+                <option value="lofi">Lo-Fi</option>
+                </optgroup>
+                <optgroup label="── Sonatas ──">
+                <option value="astralSonata">Astral Sonata</option>
+                <option value="forestSonata">Forest Sonata</option>
+                <option value="stormSonata">Storm Sonata</option>
+                <option value="totalSonata">Total Sonata</option>
+                <option value="tundraSonata">Tundra Sonata</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class="generation-settings" role="group" aria-label="Generation settings — applied on Regenerate">
+            <div class="setting-group">
+                <label for="keySelect">Key</label>
+                <select id="keySelect" onchange="selectedKey = this.value">
+                    <option value="random">Random</option>
+                    <option value="C">C</option>
+                    <option value="C#">C♯</option>
+                    <option value="D">D</option>
+                    <option value="D#">D♯</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="F#">F♯</option>
+                    <option value="G">G</option>
+                    <option value="G#">G♯</option>
+                    <option value="A">A</option>
+                    <option value="A#">A♯</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label for="scaleSelect">Scale</label>
+                <select id="scaleSelect" onchange="selectedScale = this.value">
+                    <option value="random">Random</option>
+                    <option value="major">Major</option>
+                    <option value="minor">Natural Minor</option>
+                    <option value="dorian">Dorian</option>
+                    <option value="lydian">Lydian</option>
+                    <option value="mixolydian">Mixolydian</option>
+                    <option value="majorPent">Major Pentatonic</option>
+                    <option value="minorPent">Minor Pentatonic</option>
+                    <option value="majorBlues">Major Blues</option>
+                    <option value="minorBlues">Minor Blues</option>
+                    <option value="wholeTone">Whole Tone</option>
+                    <option value="hirajoshi">Hirajoshi</option>
+                    <option value="in">In</option>
+                    <option value="iwato">Iwato</option>
+                    <option value="insen">Insen</option>
+                    <option value="yo">Yo</option>
+                    <option value="kumoi">Kumoi</option>
+                    <option value="ryukyu">Ryukyu</option>
+                </select>
+            </div>
+            <div class="setting-group">
+                <label for="tempoSelect">Tempo</label>
+                <select id="tempoSelect" onchange="selectedBpm = this.value">
+                    <option value="random">Random</option>
+                    <option value="60">60 BPM</option>
+                    <option value="70">70 BPM</option>
+                    <option value="80">80 BPM</option>
+                    <option value="90">90 BPM</option>
+                    <option value="100">100 BPM</option>
+                    <option value="110">110 BPM</option>
+                    <option value="120">120 BPM</option>
+                    <option value="130">130 BPM</option>
+                    <option value="140">140 BPM</option>
+                    <option value="150">150 BPM</option>
+                    <option value="160">160 BPM</option>
+                </select>
+            </div>
+            <button class="secondary" type="button" onclick="resetGenerationSettings()" aria-label="Reset key, scale, and tempo to random">Reset to Random</button>
+        </div>
+
+        <div class="specimen-name" aria-live="polite" aria-atomic="true">
+            <span id="specimenName" class="name-placeholder">— Awaiting specimen —</span>
+            <span id="specimenKey" class="key-text"></span>
+        </div>
+
+        <div class="radar-section">
+            <div class="radar-container">
+                <canvas id="radar" role="img" aria-label="3D spatial radar visualization of active sound sources around the listener"></canvas>
+            </div>
+            <div class="info-panel">
+                <h2>Current Soundscape</h2>
+                <div id="blendDescription" aria-live="polite" aria-atomic="true">
+                    Press <strong>Play</strong> to generate a random 3D soundscape.
+                </div>
+            </div>
+        </div>
+
+        <div class="controls-panel">
+            <h2>Controls</h2>
+            <div class="sliders-grid">
+                <div class="slider-group">
+                    <label for="masterVolume" class="slider-label">
+                        <span>Master Volume</span>
+                        <span id="volumeValue" aria-hidden="true">70%</span>
+                    </label>
+                    <input type="range" id="masterVolume" min="0" max="100" value="70" oninput="updateVolume(this.value)" aria-valuetext="70 percent">
+                </div>
+                <div class="slider-group">
+                    <label for="density" class="slider-label">
+                        <span>Density</span>
+                        <span id="densityValue" aria-hidden="true">50%</span>
+                    </label>
+                    <input type="range" id="density" min="0" max="100" value="50" oninput="updateDensity(this.value)" aria-valuetext="50 percent">
+                </div>
+                <div class="slider-group">
+                    <label for="movement" class="slider-label">
+                        <span>Movement Speed</span>
+                        <span id="movementValue" aria-hidden="true">50%</span>
+                    </label>
+                    <input type="range" id="movement" min="0" max="100" value="50" oninput="updateMovement(this.value)" aria-valuetext="50 percent">
+                </div>
+                <div class="slider-group">
+                    <label for="reverb" class="slider-label">
+                        <span>Reverb</span>
+                        <span id="reverbValue" aria-hidden="true">50%</span>
+                    </label>
+                    <input type="range" id="reverb" min="0" max="100" value="50" oninput="updateReverb(this.value)" aria-valuetext="50 percent">
+                </div>
+                <div class="slider-group">
+                    <label for="autoSwitch" class="slider-label">
+                        <span>Auto-Switch</span>
+                        <span id="autoSwitchValue" aria-hidden="true">Off</span>
+                    </label>
+                    <input type="range" id="autoSwitch" min="0" max="100" value="0" oninput="updateAutoSwitch(this.value)" aria-valuetext="off">
+                </div>
+                <div class="slider-group">
+                    <label for="entityCount" class="slider-label">
+                        <span>Entity Count <span style="color:#666;font-size:0.7em;">(Total Sonata)</span></span>
+                        <span id="entityCountValue" aria-hidden="true">5</span>
+                    </label>
+                    <input type="range" id="entityCount" min="1" max="14" value="5" oninput="updateEntityCount(this.value)" aria-valuetext="5">
+                </div>
+                <div class="slider-group">
+                    <label for="flyRate" class="slider-label">
+                        <span>Fly Rate <span style="color:#666;font-size:0.7em;">(Total Sonata)</span></span>
+                        <span id="flyRateValue" aria-hidden="true">50%</span>
+                    </label>
+                    <input type="range" id="flyRate" min="0" max="100" value="50" oninput="updateFlyRate(this.value)" aria-valuetext="50 percent">
+                </div>
+                <div class="slider-group" style="display: flex; align-items: center; justify-content: center;">
+                    <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.8rem; color: #777;">
+                        <input type="checkbox" id="evolveCheckbox" onchange="evolveTransition = this.checked"
+                               style="accent-color: #FF00F7; width: 16px; height: 16px;">
+                        Evolve into next
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="layer-volumes-panel">
+            <h2>
+                <button id="layerVolumesToggle" class="disclosure-btn" type="button"
+                        aria-expanded="false" aria-controls="layerVolumesGrid"
+                        onclick="toggleLayerVolumes()">
+                    Layer Volumes <span class="caret" aria-hidden="true">+</span>
+                </button>
+            </h2>
+            <div id="layerVolumesGrid" class="layer-volumes-grid" role="region" aria-label="Per-layer volume controls"></div>
+        </div>
+
+        <div class="conductor-panel">
+            <h2>
+                <button id="conductorToggle" class="disclosure-btn" type="button"
+                        aria-expanded="false" aria-controls="conductorContent"
+                        onclick="toggleConductor()">
+                    Conductor <span class="caret" aria-hidden="true">+</span>
+                </button>
+            </h2>
+            <div id="conductorContent" class="conductor-content" role="region" aria-label="Conductor — spawn, pin, and ban Total Sonata entities">
+                <div class="conductor-header">
+                    <fieldset class="conductor-mode">
+                        <legend class="visually-hidden">Action when clicking an entity</legend>
+                        <label><input type="radio" name="conductorMode" value="spawn" checked onchange="conductorMode='spawn'"> Spawn</label>
+                        <label><input type="radio" name="conductorMode" value="pin" onchange="conductorMode='pin'"> Pin</label>
+                        <label><input type="radio" name="conductorMode" value="ban" onchange="conductorMode='ban'"> Ban</label>
+                    </fieldset>
+                    <button type="button" class="secondary" onclick="conductorClearAll()">Clear Pins/Bans</button>
+                    <span id="conductorStatus" class="conductor-status" aria-live="polite"></span>
+                </div>
+                <div id="conductorGrid" class="conductor-grid" role="group" aria-label="Entity buttons"></div>
+                <p class="conductor-hint">
+                    Tip: <kbd>C</kbd> toggles this panel. Total Sonata must be running for spawn to work.
+                </p>
+            </div>
+        </div>
+
+        <div class="audition-panel">
+            <h2>
+                <button id="auditionToggle" class="disclosure-btn" type="button"
+                        aria-expanded="false" aria-controls="auditionContent"
+                        onclick="toggleAudition()">
+                    Sound Audition <span class="caret" aria-hidden="true">+</span>
+                </button>
+            </h2>
+            <div id="auditionContent" class="audition-content" role="region" aria-label="Audition individual sounds and layers">
+                <h3>Layers</h3>
+                <div id="auditionLayersGrid" class="audition-grid" role="group" aria-label="Layer audition buttons"></div>
+                <h3>Props</h3>
+                <div id="auditionPropsGrid" class="audition-grid" role="group" aria-label="Prop audition buttons"></div>
+                <div id="auditionEntitiesSection" style="display:none;">
+                    <h3>Total Sonata Entities <span style="color:#666;font-size:0.7em;">(dry, in current scale)</span></h3>
+                    <div id="auditionEntitiesGrid" class="audition-grid" role="group" aria-label="Total Sonata entity audition buttons"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="headphone-notice">
+            Headphones recommended for full HRTF 3D spatial experience
+        </div>
+    </div>
+
+    <div id="shortcutsHelp" class="shortcuts-help" role="dialog" aria-modal="true" aria-labelledby="shortcutsHelpTitle" aria-hidden="true" tabindex="-1">
+        <div class="shortcuts-help-inner">
+            <h2 id="shortcutsHelpTitle">Keyboard Shortcuts</h2>
+            <dl>
+                <dt><kbd>Space</kbd></dt><dd>Play / Pause</dd>
+                <dt><kbd>R</kbd></dt><dd>Regenerate</dd>
+                <dt><kbd>Esc</kbd></dt><dd>Stop (or close this dialog)</dd>
+                <dt><kbd>L</kbd></dt><dd>Toggle Layer Volumes</dd>
+                <dt><kbd>C</kbd></dt><dd>Toggle Conductor panel</dd>
+                <dt><kbd>?</kbd> or <kbd>/</kbd></dt><dd>Show / hide this help</dd>
+            </dl>
+            <button type="button" onclick="toggleShortcutsHelp()">Close</button>
+        </div>
+    </div>
+    <script src="ambience.js"></script>
+</body>
+</html>
