@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Mods | GigaSound Project</title>
+  <meta name="description" content="Screen reader accessibility mods for fighting games: Injustice 2 and Mortal Kombat 11, free to download.">
+
+  <meta property="og:title" content="Access Mods | GigaSound Project">
+  <meta property="og:description" content="Screen reader accessibility mods for Injustice 2 and Mortal Kombat 11.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="../images/logo.png">
+
+  <link rel="icon" href="../images/logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div class="site-bar" role="banner">
+    <a href="../" class="brand" aria-label="Home, GigaSound Project">
+      <img src="../images/logo.png" alt="" aria-hidden="true">
+      <span>GigaSound Project</span>
+    </a>
+    <nav aria-label="Site sections">
+      <a href="../portfolio/">Portfolio</a>
+      <a href="../projects/">Projects</a>
+      <a href="./" aria-current="page">Access Mods</a>
+    </nav>
+  </div>
+
+  <div class="hero">
+    <img src="../images/logo.png" alt="GigaSound Project logo" class="logo">
+    <h1>Access Mods</h1>
+    <p class="tagline">Screen reader mods that make games speak. Free, and built because nobody else was going to.</p>
+    <nav class="primary" aria-label="Mods on this page">
+      <a href="#injustice2">Injustice 2</a>
+      <a href="#mk11">Mortal Kombat 11</a>
+      <a href="#help">Help &amp; Reporting</a>
+    </nav>
+  </div>
+
+  <main id="main">
+
+    <section id="intro" aria-labelledby="intro-heading">
+      <h2 id="intro-heading">What these are</h2>
+      <p class="lede">Big fighting games draw their menus as pictures. A screen reader sees nothing, which means a blind player cannot pick a character, set up a match, or get through a story chapter without sighted help. These mods hook into the game's own interface code and read the real text aloud, so the menus finally talk.</p>
+      <p>They speak through NVDA or JAWS when one is running, and fall back to the Windows voice when neither is. They are menu readers: they do not play the game for you, and they do not narrate the fight itself.</p>
+      <p>Both mods load code into the game the same way modding frameworks do, so an antivirus may take an interest. Nothing is changed in the game's own files. They read text and nothing else, and both have been used online, ranked included, without trouble.</p>
+    </section>
+
+    <section id="injustice2" aria-labelledby="injustice2-heading">
+      <h2 id="injustice2-heading">Injustice 2</h2>
+      <p class="lede">Build dated 26 August 2026. Steam version on Windows.</p>
+      <div class="work-grid">
+
+        <article class="work-item">
+          <h3>Injustice 2 Accessibility, full package</h3>
+          <p class="meta">Windows &middot; Steam &middot; Includes loader, launcher and installer</p>
+          <p>Start here if you have never installed the mod before. This is the complete package: the accessibility mod, the Reloaded II loader underneath it, the launcher and the installer. Install steps are below.</p>
+          <p><a href="files/Injustice2-Accessibility-FULL-2026-08-26.zip" download>Download the full package (.zip, 2.7 MB)</a></p>
+          <div class="tags">
+            <span class="tag">Accessibility</span>
+            <span class="tag">Screen reader</span>
+            <span class="tag">Full install</span>
+          </div>
+        </article>
+
+        <article class="work-item">
+          <h3>Injustice 2 Accessibility, update only</h3>
+          <p class="meta">Windows &middot; Steam &middot; Two mod files, upgrade only</p>
+          <p>For people who already have the mod installed and working. Close the game, then copy <code>Injustice2.Accessibility.dll</code> and <code>Injustice2.Accessibility.deps.json</code> into <code>Binaries\Retail\Reloaded-II\Mods\Injustice2.Accessibility</code> inside your game folder, replacing what is there. If an old <code>Injustice2.Accessibility.pdb</code> is sitting in that folder, delete it; it is a leftover debug file and is not needed. Keep a copy of the old files first if you want a way back. Nothing else changes, and you do not need to run the installer again.</p>
+          <p><a href="files/Injustice2-Accessibility-UPDATE-2026-08-26.zip" download>Download the update (.zip, 46 KB)</a></p>
+          <div class="tags">
+            <span class="tag">Accessibility</span>
+            <span class="tag">Update</span>
+          </div>
+        </article>
+
+      </div>
+
+      <h3>What you need</h3>
+      <ul class="links-list" role="list">
+        <li>Injustice 2 installed through Steam. The mod does not include the game.</li>
+        <li>The Microsoft <a href="https://dotnet.microsoft.com/download/dotnet/9.0" target="_blank" rel="noopener">.NET 9 Desktop Runtime</a>, 64 bit. Pick the entry called ".NET Desktop Runtime 9.x, Windows x64 Installer". If the game starts but never says "Injustice 2 accessibility loaded", this is almost always the missing piece.</li>
+        <li>A screen reader running before you launch the game. NVDA, JAWS and Narrator all work, with SAPI as a fallback. Nothing needs configuring for speech; the mod finds your reader on its own.</li>
+      </ul>
+
+      <h3>Installing the full package</h3>
+      <ol class="steps">
+        <li>Unzip the package somewhere convenient, like your desktop.</li>
+        <li>Open the folder named <code>Retail</code> inside it, select everything in that folder, and copy it.</li>
+        <li>Go to your Injustice 2 install folder, then into <code>Binaries</code>, then <code>Retail</code>. The usual path is <code>C:\Program Files (x86)\Steam\steamapps\common\Injustice2\Binaries\Retail</code>. If you are not sure where the game is, in Steam open Injustice 2, then Properties, then Installed Files, then Browse.</li>
+        <li>Paste everything there, saying yes to replacing files if Windows asks. You are only adding mod files; no game files are overwritten.</li>
+        <li>In that same <code>Retail</code> folder, right click <code>Injustice2_Installer.exe</code> and choose "Run as administrator". Approve the Windows prompt. It will say "Mod installed successfully."</li>
+        <li>Launch Injustice 2 normally from Steam. Within a few seconds of the window appearing you should hear "Injustice 2 accessibility loaded".</li>
+      </ol>
+      <p>Step 5 is required. It writes one Windows registry entry so the game starts through the mod launcher, which is what keeps Steam, achievements and online play working normally.</p>
+
+      <h3>Uninstalling</h3>
+      <p>Open a command prompt in the <code>Binaries\Retail</code> folder and run <code>Injustice2_Installer.exe /uninstall</code> as administrator. It will say "Mod uninstalled. The game will now launch without the mod." The game then starts normally, and you can delete the mod files afterwards if you want them gone.</p>
+
+      <h3>What is new in this build</h3>
+      <ul class="links-list" role="list">
+        <li>Move lists now carry the frame data. On a move you hear the name and position, a short note on what the move does, and then the numbers: move type, start up, active, recover, damage, block damage, block advantage, hit advantage and cancel. Columns the game leaves empty are skipped rather than read as "not applicable". Moves marked as ability moves, or as affected by strength or by an ability, say so. Section headings read their own name instead of repeating the move you were last on, and tagging a move with the Y button announces the new count, for example "tagged, 1 of 10".</li>
+        <li>Diagnostic logging is off unless you ask for it. Earlier builds wrote a detailed log the whole time you played, which grew to megabytes on a machine that was not chasing a bug. Press F10 when you want it.</li>
+      </ul>
+
+      <h3>Also in recent builds</h3>
+      <ul class="links-list" role="list">
+        <li>Customization no longer bleeds text from screens you have already left.</li>
+        <li>Gear numbers say which number is which, for example "loadout total strength 1200" against "this piece strength 40", and a change like plus 14 reads as "14 higher than equipped".</li>
+        <li>Gear unlocked after a match is announced as it is revealed, rather than only after you press a button.</li>
+        <li>The dyes and shaders screen, previously silent, reads name, price and unlock message.</li>
+        <li>Mother box and loot drops say which character a piece of gear is for.</li>
+        <li>Another player's online profile and hero card read.</li>
+        <li>Several announcements that used to speak once per session and then go quiet now repeat properly.</li>
+      </ul>
+
+      <h3>Keys</h3>
+      <p>All of these work only while the game window is in the foreground.</p>
+      <ul class="links-list" role="list">
+        <li><strong>F1</strong>: read the whole current screen. This is the catch-all. If a screen says nothing on its own, press F1.</li>
+        <li><strong>F4</strong>: read details for whatever you are on. In a tutorial lesson it re-reads the full lesson text; on a piece of gear it reads the complete gear card with slot, character, stats, set bonus and ability; anywhere else it falls back to the whole screen.</li>
+        <li><strong>F6</strong>: take a screenshot into the mod folder, for reporting problems.</li>
+        <li><strong>F7</strong>: repeat the control hints for this screen.</li>
+        <li><strong>F8</strong>: repeat the last story mode branching choice.</li>
+        <li><strong>F9</strong>: repeat the last thing spoken, in full.</li>
+        <li><strong>F10</strong>: turn diagnostic logging on or off. It is off unless you switch it on.</li>
+        <li><strong>Right stick click</strong>: repeats the last line, same as F9. In a tutorial lesson it re-reads the lesson instead.</li>
+      </ul>
+      <p>F4 is the read-details key in this build. Older builds used F2, which was freed up so the separate I2Hook cheat panel can use it.</p>
+
+      <h3>Known rough edges</h3>
+      <ul class="links-list" role="list">
+        <li>The direction announced during story mode quick time events can be wrong.</li>
+        <li>The character tutorial list, where you pick which tutorial to run, does not read well yet.</li>
+        <li>Guild screens other than the join page, the sell popup for individual items, and some detail panels are not covered.</li>
+      </ul>
+
+      <h3>About logging</h3>
+      <p>The mod keeps one small file, <code>AccessKit.log</code>, which records whether it loaded and what it hooked. That one is always written and stays small. The detailed diagnostic logs are off: they only start when you press F10, and they stop again on a second press or when you close the game. If you are coming from an older build, the mod folder probably holds a large <code>AccessKit_dump.log</code> from back when logging ran all the time. Any file in that folder whose name starts with <code>AccessKit_</code> is safe to delete while the game is closed.</p>
+
+      <h3>Credits</h3>
+      <p>The original Injustice 2 accessibility mod, the launcher and the installer are by Amethyst. This build extends that work with a lot of additional screen coverage. The loader underneath is <a href="https://github.com/Reloaded-Project/Reloaded-II" target="_blank" rel="noopener">Reloaded II</a> by Sewer56, and speech goes through the prism library.</p>
+    </section>
+
+    <section id="mk11" aria-labelledby="mk11-heading">
+      <h2 id="mk11-heading">Mortal Kombat 11</h2>
+      <p class="lede">Version 0.2.0. Steam version on Windows.</p>
+      <div class="work-grid">
+
+        <article class="work-item">
+          <h3>MK11 Accessibility 0.2.0</h3>
+          <p class="meta">Windows &middot; Steam &middot; Installer included</p>
+          <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen.</p>
+          <p><a href="files/MK11-Accessibility-0.2.0.zip" download>Download MK11 Accessibility 0.2.0 (.zip, 2.3 MB)</a></p>
+          <div class="tags">
+            <span class="tag">Accessibility</span>
+            <span class="tag">Screen reader</span>
+            <span class="tag">v0.2.0</span>
+          </div>
+        </article>
+
+      </div>
+
+      <h3>What you need</h3>
+      <ul class="links-list" role="list">
+        <li>Mortal Kombat 11 on Windows, the Steam version.</li>
+        <li>The Microsoft <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">.NET 9 Desktop Runtime</a>, x64. This is the one thing most people will not already have, and if the mod stays silent this is almost certainly why.</li>
+        <li>NVDA or JAWS, if you want it to speak through your usual voice. Optional.</li>
+      </ul>
+      <p>You do not need administrator rights, and you do not need to change any Windows settings.</p>
+
+      <h3>Installing</h3>
+      <ol class="steps">
+        <li>Unzip the folder anywhere you like. Your downloads folder is fine. Do not unzip it into the game folder.</li>
+        <li>Run <code>Install.bat</code>.</li>
+        <li>It will try to find Mortal Kombat 11 on its own, including on other drives. If it cannot, it will ask for the full path to your Mortal Kombat 11 folder, meaning the folder containing a folder called <code>Binaries</code>.</li>
+        <li>It will tell you when it is done. Close the game first if it is running; the installer will stop and say so if it is.</li>
+      </ol>
+      <p>Start the game with <code>MK11.exe</code>, not <code>MK11_DX12.exe</code>. That is a different build of the game and the mod will refuse to attach rather than risk breaking anything. If it worked you will hear "Mortal Kombat 11 accessibility loaded" a few seconds after the window appears.</p>
+
+      <h3>What it reads today</h3>
+      <ul class="links-list" role="list">
+        <li>Main menus and option screens, including slider values as numbers while you drag them.</li>
+        <li>Story mode, including chapter select and the "choose your fighter" moments, telling you which fighter is on the left, which is on the right, and which way to push.</li>
+        <li>Character select, stage select, and the start of a match, so you know who is fighting.</li>
+        <li>The tutorial: objectives when a lesson starts, and when you have completed one.</li>
+        <li>Kustomize: gear, kosmetics, abilities and AI behaviour. Gear and kosmetic items say whether they are locked and where they come from. Abilities read the name, how many of your three slots they cost, anything they conflict with, and what they do.</li>
+        <li>The Krypt, partly: chests and rewards.</li>
+      </ul>
+
+      <h3>What does not work yet</h3>
+      <ul class="links-list" role="list">
+        <li>Moving around the Krypt itself. It is a three dimensional world you walk through rather than a menu, so it needs a completely different approach. You can hear chests when you reach them, but finding your way there is not solved.</li>
+        <li>Anything during an actual fight. You will not be told what your opponent is doing.</li>
+        <li>Online menus are covered less thoroughly than the rest. Playing online works, but expect the odd screen that says nothing; F1 usually gets you out of it.</li>
+      </ul>
+
+      <h3>Uninstalling</h3>
+      <p>Run <code>Uninstall.bat</code>. By hand, delete <code>Binaries\Retail\dinput8.dll</code> from your game folder. That is the only file the game ever loads, and deleting it fully disables the mod. The <code>Reloaded-II</code> folder left behind does nothing on its own and can be deleted too. The mod does not change any of the game's own files, so there is nothing to repair or verify afterwards.</p>
+    </section>
+
+    <section id="help" aria-labelledby="help-heading">
+      <h2 id="help-heading">Help &amp; Reporting</h2>
+      <p class="lede">Screens that say nothing are the useful bug reports, because they are the ones nobody has found yet.</p>
+
+      <h3>Injustice 2 logs</h3>
+      <p>The mod writes its logs into its own folder, <code>Binaries\Retail\Reloaded-II\Mods\Injustice2.Accessibility</code>. Detailed logging is off by default; press F10 as soon as the game loads, go and do the thing that reads wrong, then send the files there whose names start with <code>AccessKit_</code>. If a file named <code>AccessKit.log</code> appears there, the mod loaded and any problem is with speech; if it does not, the mod never started, which usually means the .NET 9 Desktop Runtime is missing or the installer was not run as administrator. Some overlays can interfere too, so if nothing at all happens, try turning off the Steam overlay and any GPU recording overlays for Injustice 2. If the game stops speaking after an update, put back the files you set aside and you are exactly where you were before.</p>
+
+      <h3>Mortal Kombat 11 logs</h3>
+      <p>There is a log inside your game folder at <code>Reloaded-II\Mods\MK11.Accessibility\MK11AccessKit.log</code>. It is plain text, and it records whether the mod attached and what it hooked. If the mod is silent, the first few lines usually say why. A second log next to it in <code>Binaries\Retail</code>, <code>MK11AccessKit_loader.log</code>, covers the earlier startup stage.</p>
+      <p>To report a problem properly, create an empty text file called <code>debug.txt</code> in the same folder as the first log, then play again. That turns on a detailed recording of every piece of text the game drew and everything the mod said, into <code>MK11AccessKit_dump.log</code>. Send that file along with a description of what you were doing, and leave <code>debug.txt</code> off the rest of the time, because the detailed log grows to several megabytes and never trims itself.</p>
+
+      <h3>Source code</h3>
+      <p>The source is not published yet. If enough people ask for it, it will be. Say so through the contact form if you want to see it.</p>
+
+      <h3>Get in touch</h3>
+      <ul class="links-list" role="list">
+        <li><a href="../portfolio/#contact">Contact form</a>: bug reports, screens that read nothing, or requests for another game.</li>
+        <li><a href="https://t.me/+jEwB8vcK_EYzZGNh" target="_blank" rel="noopener">Telegram channel</a>: build announcements and updates.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    &copy; <span id="year">2026</span> GigaSound Project
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

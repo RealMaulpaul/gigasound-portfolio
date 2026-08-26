@@ -34,17 +34,44 @@
 
         h1 {
             font-size: 2rem;
-            background: linear-gradient(90deg, #FF00F7, #00FFFF, #FFFF00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            /* Solid colour first: if background-clip:text is unsupported or the
+               gradient fails to paint, the heading stays readable rather than
+               rendering as transparent text. */
+            color: #fff;
             margin-bottom: 8px;
+        }
+
+        @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+            h1 {
+                background: linear-gradient(90deg, #FF00F7, #00FFFF, #FFFF00);
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        /* A gradient cannot be contrast-checked, so honour a contrast preference
+           by dropping back to solid white on the near-black background. */
+        @media (prefers-contrast: more) {
+            h1 {
+                background: none;
+                -webkit-text-fill-color: #fff;
+                color: #fff;
+            }
         }
 
         .subtitle {
             color: #aaa;
             font-size: 0.85rem;
         }
+
+        /* Default link blue fails contrast on this near-black page. */
+        a {
+            color: #8fb6ff;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        a:hover { color: #b9d0ff; }
 
         /* Visible keyboard focus indicators (WCAG 2.4.7) */
         button:focus-visible,
@@ -685,7 +712,10 @@
         <header>
             <h1>soundStrider Random Ambience</h1>
             <p class="subtitle">HRTF 3D spatial ambience generator - use headphones</p>
+            <p class="subtitle"><a href="../../">Back to the GigaSound Project</a></p>
         </header>
+
+        <main id="main">
 
         <div class="main-controls" role="group" aria-label="Playback controls">
             <button id="playBtn" onclick="togglePlay()" aria-label="Play or pause ambience">Play</button>
@@ -930,6 +960,8 @@
         <div class="headphone-notice">
             Headphones recommended for full HRTF 3D spatial experience
         </div>
+
+        </main>
     </div>
 
     <div id="shortcutsHelp" class="shortcuts-help" role="dialog" aria-modal="true" aria-labelledby="shortcutsHelpTitle" aria-hidden="true" tabindex="-1">

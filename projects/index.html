@@ -28,22 +28,24 @@
     <nav aria-label="Site sections">
       <a href="../portfolio/">Portfolio</a>
       <a href="./" aria-current="page">Projects</a>
+      <a href="../mods/">Access Mods</a>
     </nav>
   </div>
 
-  <header class="hero">
+  <div class="hero">
     <img src="../images/logo.png" alt="GigaSound Project logo" class="logo">
     <h1>Projects &amp; Releases</h1>
     <p class="tagline">Games, NVDA add-ons, music, and other things I've shipped.</p>
     <nav class="primary" aria-label="Projects sections">
       <a href="#games">Games</a>
+      <a href="#mods">Access Mods</a>
       <a href="#web">Web Toys</a>
       <a href="#nvda">NVDA Add-ons</a>
       <a href="#music">Music</a>
       <a href="#video">Video</a>
       <a href="#follow">Follow</a>
     </nav>
-  </header>
+  </div>
 
   <main id="main">
 
@@ -74,6 +76,26 @@
             <div class="tags"><span class="tag">Tag</span></div>
           </article>
         -->
+
+      </div>
+    </section>
+
+    <section id="mods" aria-labelledby="mods-heading">
+      <h2 id="mods-heading">Access Mods</h2>
+      <p class="lede">Screen reader mods for games that shipped without any.</p>
+      <div class="work-grid">
+
+        <article class="work-item">
+          <h3>Injustice 2 and Mortal Kombat 11</h3>
+          <p class="meta">Windows &middot; Steam &middot; NVDA, JAWS or the Windows voice</p>
+          <p>Both games draw their menus as pictures, so a screen reader sees nothing at all. These mods hook the games' own interface code and read the real text aloud, covering character select, story mode, kustomize, gear, tutorials and more. Free to download, with install notes and key lists.</p>
+          <p><a href="../mods/">Go to the Access Mods page &rarr;</a></p>
+          <div class="tags">
+            <span class="tag">Accessibility</span>
+            <span class="tag">Screen reader</span>
+            <span class="tag">Game mods</span>
+          </div>
+        </article>
 
       </div>
     </section>
@@ -168,7 +190,7 @@
 
     <section id="follow" aria-labelledby="follow-heading">
       <h2 id="follow-heading">Follow &amp; Connect</h2>
-      <ul class="links-list">
+      <ul class="links-list" role="list">
         <li><a href="https://t.me/+jEwB8vcK_EYzZGNh" target="_blank" rel="noopener">Telegram channel</a>: updates on everything above.</li>
         <li><a href="https://www.youtube.com/channel/UCJtEGSjQM6nEQi46Tftv8HQ" target="_blank" rel="noopener">YouTube: The GigaSound Project</a></li>
         <li><a href="../portfolio/">Portfolio &amp; Hire Me</a>: if you're here to talk audio work.</li>

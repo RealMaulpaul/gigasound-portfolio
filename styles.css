@@ -6,6 +6,10 @@
   --muted: #a1a4ad;
   --accent: #7c8cff;
   --accent-hover: #5a6dff;
+  /* Darker accent for filled surfaces that carry white text.
+     --accent on white text is only 2.98:1; this is 5.36:1 (WCAG AA). */
+  --accent-solid: #4a5ae8;
+  --accent-solid-hover: #3a49cc;
   --border: #2a2d36;
   --max-w: 860px;
 }
@@ -33,9 +37,22 @@ a {
 a:hover, a:focus { border-bottom-color: var(--accent); }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
 
+/* Links inside running text must not be signalled by colour alone (WCAG 1.4.1).
+   The accent only reaches 2.43:1 against body text, so prose links are underlined.
+   Navigation, cards, and other link-only blocks are exempt and stay clean. */
+main p a,
+main li a,
+main dd a,
+footer a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+main p a:hover, main li a:hover, main dd a:hover, footer a:hover { text-decoration-thickness: 2px; }
+
 .skip-link {
   position: absolute; left: -9999px; top: 0;
-  background: var(--accent); color: #fff; padding: .6rem 1rem; z-index: 100;
+  background: var(--accent-solid); color: #fff; padding: .6rem 1rem; z-index: 100;
 }
 .skip-link:focus { left: 1rem; top: 1rem; }
 
@@ -56,15 +73,15 @@ a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-
 .site-bar nav a { color: var(--muted); }
 .site-bar nav a:hover, .site-bar nav a[aria-current="page"] { color: var(--text); }
 
-header.hero {
+.hero {
   padding: 4rem 1.5rem 3rem;
   background: linear-gradient(180deg, #1a1d27 0%, var(--bg) 100%);
   text-align: center;
   border-bottom: 1px solid var(--border);
 }
-header.hero img.logo { width: 140px; height: auto; margin-bottom: 1rem; }
-header.hero h1 { font-size: 2.4rem; margin: .5rem 0 .25rem; }
-header.hero .tagline { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.5rem; }
+.hero img.logo { width: 140px; height: auto; margin-bottom: 1rem; }
+.hero h1 { font-size: 2.4rem; margin: .5rem 0 .25rem; }
+.hero .tagline { color: var(--muted); font-size: 1.1rem; margin: 0 0 1.5rem; }
 
 nav.primary {
   display: flex; justify-content: center; flex-wrap: wrap; gap: 1.25rem;
@@ -128,23 +145,35 @@ section .lede { color: var(--muted); margin-top: -.25rem; margin-bottom: 1.5rem;
   font-family: inherit;
   width: 100%;
 }
+/* Keep a real focus ring. A border colour change alone is too weak to satisfy
+   focus visible (WCAG 2.4.7) and non-text contrast (1.4.11). */
 .contact input[type="email"]:focus, .contact textarea:focus {
-  outline: none; border-color: var(--accent);
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 .contact textarea { min-height: 140px; resize: vertical; }
 .contact button {
   align-self: flex-start;
   padding: .7rem 1.6rem;
-  background: var(--accent); color: #fff;
+  background: var(--accent-solid); color: #fff;
   border: none; border-radius: 6px;
   font-size: 1rem; font-weight: 500;
   cursor: pointer;
   transition: background .15s ease;
 }
-.contact button:hover, .contact button:focus { background: var(--accent-hover); }
+.contact button:hover { background: var(--accent-solid-hover); }
+.contact button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 .links-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
 .links-list li { padding: .5rem 0; }
+
+/* Numbered procedures keep their markers: the numbers are the content. */
+.steps { padding-left: 1.5rem; margin: 0; display: grid; gap: .5rem; }
+.steps li { padding: .25rem 0; }
 
 /* Router landing page */
 .router-main {
@@ -191,9 +220,22 @@ footer {
   margin-top: 2rem;
 }
 
+/* Respect a reduced-motion preference (WCAG 2.3.3): no smooth scrolling,
+   no card lift, no colour fades. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .router-card:hover, .router-card:focus { transform: none; }
+}
+
 @media (max-width: 600px) {
-  header.hero { padding: 3rem 1rem 2rem; }
-  header.hero h1 { font-size: 1.9rem; }
+  .hero { padding: 3rem 1rem 2rem; }
+  .hero h1 { font-size: 1.9rem; }
   .router-hero h1 { font-size: 2rem; }
   section { padding: 2.25rem 0; }
   .site-bar { padding: .75rem 1rem; }
