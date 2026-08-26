@@ -150,18 +150,18 @@
 
     <section id="mk11" aria-labelledby="mk11-heading">
       <h2 id="mk11-heading">Mortal Kombat 11</h2>
-      <p class="lede">Version 0.2.0. Steam version on Windows.</p>
+      <p class="lede">Version 0.5.0, 26 August 2026. Steam version on Windows.</p>
       <div class="work-grid">
 
         <article class="work-item">
-          <h3>MK11 Accessibility 0.2.0</h3>
+          <h3>MK11 Accessibility 0.5.0</h3>
           <p class="meta">Windows &middot; Steam &middot; Installer included</p>
-          <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen.</p>
-          <p><a href="files/MK11-Accessibility-0.2.0.zip" download>Download MK11 Accessibility 0.2.0 (.zip, 2.3 MB)</a></p>
+          <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen. This build adds audio navigation for the Krypt, and it is a large step up from 0.2.0, which is what used to be on this page.</p>
+          <p><a href="files/MK11-Accessibility-0.5.0.zip" download>Download MK11 Accessibility 0.5.0 (.zip, 3.3 MB)</a></p>
           <div class="tags">
             <span class="tag">Accessibility</span>
             <span class="tag">Screen reader</span>
-            <span class="tag">v0.2.0</span>
+            <span class="tag">v0.5.0</span>
           </div>
         </article>
 
@@ -170,8 +170,8 @@
       <h3>What you need</h3>
       <ul class="links-list" role="list">
         <li>Mortal Kombat 11 on Windows, the Steam version.</li>
-        <li>The Microsoft <a href="https://dotnet.microsoft.com/download" target="_blank" rel="noopener">.NET 9 Desktop Runtime</a>, x64. This is the one thing most people will not already have, and if the mod stays silent this is almost certainly why.</li>
-        <li>NVDA or JAWS, if you want it to speak through your usual voice. Optional.</li>
+        <li>The Microsoft <a href="https://dotnet.microsoft.com/download/dotnet/9.0" target="_blank" rel="noopener">.NET 9 Desktop Runtime</a>, 64 bit. Pick the entry called ".NET Desktop Runtime 9.x, Windows x64 Installer". This is the one thing most people will not already have, and if the mod stays silent this is almost certainly why.</li>
+        <li>NVDA or JAWS, if you want it to speak through your usual voice. Optional; without one it uses the Windows voice.</li>
       </ul>
       <p>You do not need administrator rights, and you do not need to change any Windows settings.</p>
 
@@ -182,7 +182,43 @@
         <li>It will try to find Mortal Kombat 11 on its own, including on other drives. If it cannot, it will ask for the full path to your Mortal Kombat 11 folder, meaning the folder containing a folder called <code>Binaries</code>.</li>
         <li>It will tell you when it is done. Close the game first if it is running; the installer will stop and say so if it is.</li>
       </ol>
+      <p>Upgrading from an earlier version is the same process. Run <code>Install.bat</code> again and it will replace what is already there.</p>
       <p>Start the game with <code>MK11.exe</code>, not <code>MK11_DX12.exe</code>. That is a different build of the game and the mod will refuse to attach rather than risk breaking anything. If it worked you will hear "Mortal Kombat 11 accessibility loaded" a few seconds after the window appears.</p>
+
+      <h3>What is new in 0.5.0: finding your way around the Krypt</h3>
+      <p>The Krypt is not a menu. It is a three dimensional world you walk around in, so none of the menu reading applies to it, and until now there was nothing there at all. You could hear a chest once you were standing on it, but there was no way to find one. There is now a beacon that points you at the objects around you using sound.</p>
+      <p>It works like a map that always faces north, rather than like something strapped to your character. That matters, because the camera swings around as you walk, and every version that was tied to the camera became unreadable the moment you turned. Three things carry the information:</p>
+      <ul class="links-list" role="list">
+        <li><strong>Which ear the sound is in</strong> tells you which side the object is on. Full left is due west of you, full right is due east.</li>
+        <li><strong>Pitch</strong> tells you whether it is above you or below you. Higher is above.</li>
+        <li><strong>How often the sound repeats</strong> tells you the distance. Far away it ticks about once every two seconds, and it speeds up as you close in until it is nearly continuous when you arrive. This is the part to steer by: walk, and if the ticking speeds up you are going the right way. If it slows down, turn around.</li>
+      </ul>
+      <p>North and south are not carried by the sound, because the left and right channels and the pitch are both already spoken for. Instead the mod speaks the compass bearing when the target changes. Both the speech and the sound use compass directions, so they can never contradict each other.</p>
+      <p>When you reach something it says "reached it, next" and moves on to the next nearest object, so it does not keep pinging at a chest you have already opened. Not everything it points at is a chest: the mod can see the objects the game has placed in the world but cannot yet tell chests from doors from scenery, and a few of them cannot be reached at all. Press F8 to skip one and move to the next.</p>
+      <p>Also fixed in this build: the Krypt used to read its coordinate display aloud twelve times a second, so you heard something like "10594, 39" endlessly over the top of everything else. That is gone.</p>
+      <p>Please treat the beacon as experimental. It has found real chests, which is more than any earlier version managed, but the tuning is a first attempt and feedback on it is genuinely useful.</p>
+
+      <h3>Also new since 0.2.0</h3>
+      <ul class="links-list" role="list">
+        <li><strong>Towers of Time works.</strong> Each portal reads the tower name, what kind of tower it is, its difficulty out of five, which portal you are on, how long before it rotates away, and what it pays out. Before this a portal said only its name, and MK11 names its towers as jokes like "help" and "pit fighter", so telling them apart was impossible. Pressing Y opens the Race Against Time board, which used to be completely silent.</li>
+        <li><strong>Tower details read.</strong> Choosing a tower opened a panel that said nothing at all. It now reads the name, the number of opponents, the difficulty, the modifiers, and the tower's own description, which is where the game hides restrictions like tag assist konsumables not being allowed. It also reads rewards, your high score and your rank, and if the tower is locked it says which tower you have to finish first.</li>
+        <li><strong>Towers that demand a particular fighter.</strong> Some towers only let you play as one character, and the game shows this by greying out every other portrait, which is invisible to us. The panel now names the required fighter, and moving onto a portrait you cannot pick says "locked" and repeats the game's own wording, for example "Jade required".</li>
+        <li><strong>The konsumable trap is explained.</strong> The game has two konsumable screens that look identical. The one on the right trigger is a viewer and nothing can be selected on it; the one where you actually equip konsumables is opened with the X button on the screen just before a match starts. The mod used to say "available" on the viewer, which made it sound like you could add the item. It now says "view only", names the screen you are on, and reads the X button prompt on the screen that does work.</li>
+        <li><strong>The screen before a match reads properly:</strong> you against your opponent, each modifier and what it does, how many konsumables you have equipped, and the button that opens the konsumable screen.</li>
+        <li><strong>End of a match is read:</strong> who won, whether it ended in a fatality or a brutality, and what you were paid in koins, souls and hearts. Tower reward cards at the end of a run are read too.</li>
+        <li><strong>The move list carries frame data</strong>, what each move actually does, and the move properties. Tagging a move with Y says so.</li>
+        <li><strong>Abilities in kustomize read properly:</strong> whether an ability is equipped, what it costs, how many of your three slots are used, what it conflicts with, and what it does. Swapping one says what replaced what.</li>
+        <li><strong>Character select reads the whole variation summary</strong> as you move the carousel, including the abilities with their inputs and the AI ratings. You do not have to press Y for it. It also speaks immediately now rather than after a short delay, choosing player two no longer reads back player one's fighter, and random select stays quiet while it spins instead of shouting a name on every hop.</li>
+        <li><strong>Button names match what you are actually holding.</strong> On the keyboard it says the key; on a pad it says the button in that pad's own language, Xbox or PlayStation. It follows you if you swap mid session.</li>
+      </ul>
+
+      <h3>Keys</h3>
+      <p>These work only while the game window is in the foreground.</p>
+      <ul class="links-list" role="list">
+        <li><strong>F11</strong>: turn the Krypt beacon on and off. It starts off.</li>
+        <li><strong>F8</strong>: skip whatever the beacon is currently pointing at and move to the next one. Hold control and press F8 to forget everything you have skipped or reached and start over.</li>
+        <li><strong>F9</strong>: write a snapshot of everything on screen to a text file next to the log. If a screen says nothing, pressing F9 while you are on it and sending that file is the single most useful thing you can do.</li>
+      </ul>
 
       <h3>What it reads today</h3>
       <ul class="links-list" role="list">
@@ -190,15 +226,19 @@
         <li>Story mode, including chapter select and the "choose your fighter" moments, telling you which fighter is on the left, which is on the right, and which way to push.</li>
         <li>Character select, stage select, and the start of a match, so you know who is fighting.</li>
         <li>The tutorial: objectives when a lesson starts, and when you have completed one.</li>
-        <li>Kustomize: gear, kosmetics, abilities and AI behaviour. Gear and kosmetic items say whether they are locked and where they come from. Abilities read the name, how many of your three slots they cost, anything they conflict with, and what they do.</li>
-        <li>The Krypt, partly: chests and rewards.</li>
+        <li>Kustomize: gear, kosmetics, abilities and AI behaviour. Gear and kosmetic items say whether they are locked and where they come from.</li>
+        <li>Towers of Time: the portal map, the towers themselves, the konsumable screens, and the reward cards at the end of a run.</li>
+        <li>The move list, with frame data, move descriptions and move properties.</li>
+        <li>The end of a match: who won, how it ended, and what you earned.</li>
+        <li>The Krypt: chests and rewards when you reach them, plus the beacon described above to help you find them.</li>
       </ul>
 
       <h3>What does not work yet</h3>
       <ul class="links-list" role="list">
-        <li>Moving around the Krypt itself. It is a three dimensional world you walk through rather than a menu, so it needs a completely different approach. You can hear chests when you reach them, but finding your way there is not solved.</li>
+        <li>Walls in the Krypt. The beacon points you at objects, but nothing yet tells you that you are about to walk into a wall, or which way a corridor runs, so you will still get stuck on scenery. This is the next thing being built.</li>
+        <li>Knowing what a Krypt object is before you get to it. The beacon says "object", because the game does not label them in any way the mod can read yet.</li>
         <li>Anything during an actual fight. You will not be told what your opponent is doing.</li>
-        <li>Online menus are covered less thoroughly than the rest. Playing online works, but expect the odd screen that says nothing; F1 usually gets you out of it.</li>
+        <li>Online menus are covered less thoroughly than the rest. Playing online works, but expect the odd screen that says nothing.</li>
       </ul>
 
       <h3>Uninstalling</h3>
@@ -214,7 +254,7 @@
 
       <h3>Mortal Kombat 11 logs</h3>
       <p>There is a log inside your game folder at <code>Reloaded-II\Mods\MK11.Accessibility\MK11AccessKit.log</code>. It is plain text, and it records whether the mod attached and what it hooked. If the mod is silent, the first few lines usually say why. A second log next to it in <code>Binaries\Retail</code>, <code>MK11AccessKit_loader.log</code>, covers the earlier startup stage.</p>
-      <p>To report a problem properly, create an empty text file called <code>debug.txt</code> in the same folder as the first log, then play again. That turns on a detailed recording of every piece of text the game drew and everything the mod said, into <code>MK11AccessKit_dump.log</code>. Send that file along with a description of what you were doing, and leave <code>debug.txt</code> off the rest of the time, because the detailed log grows to several megabytes and never trims itself.</p>
+      <p>Detailed logging is off unless you switch it on, so the mod will not quietly fill your drive with a log nobody asked for. To report a problem properly, create an empty text file called <code>debug.txt</code> in the same folder as the first log, then play again. That turns on a detailed recording of every piece of text the game drew and everything the mod said, into <code>MK11AccessKit_dump.log</code>. Send that file along with a description of what you were doing, and leave <code>debug.txt</code> off the rest of the time, because the detailed log grows to several megabytes and never trims itself.</p>
 
       <h3>Source code</h3>
       <p>The source is not published yet. If enough people ask for it, it will be. Say so through the contact form if you want to see it.</p>
