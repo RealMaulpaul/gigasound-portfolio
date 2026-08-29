@@ -206,12 +206,14 @@ section .lede { color: var(--muted); margin-top: -.25rem; margin-bottom: 1.5rem;
   transform: translateY(-2px);
   border-bottom: 1px solid var(--accent);
 }
-.router-card h2 {
-  margin: 0 0 .5rem; font-size: 1.4rem;
+.router-card .card-title {
+  display: block;
+  margin: 0 0 .4rem;
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  font-size: 1.35rem; font-weight: 600;
   color: var(--accent);
 }
-.router-card p { margin: 0; color: var(--muted); }
-.router-card .arrow { display: inline-block; margin-top: 1rem; color: var(--accent); font-weight: 500; }
+.router-card .card-note { display: block; color: var(--muted); }
 
 footer {
   text-align: center; padding: 2.5rem 1.5rem;
@@ -219,6 +221,8 @@ footer {
   border-top: 1px solid var(--border);
   margin-top: 2rem;
 }
+footer p { margin: 0; }
+footer p + p { margin-top: .4rem; }
 
 /* Respect a reduced-motion preference (WCAG 2.3.3): no smooth scrolling,
    no card lift, no colour fades. */

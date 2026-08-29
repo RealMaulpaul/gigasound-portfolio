@@ -62,11 +62,6 @@
           <p class="meta">Windows &middot; Steam &middot; Includes loader, launcher and installer</p>
           <p>Start here if you have never installed the mod before. This is the complete package: the accessibility mod, the Reloaded II loader underneath it, the launcher and the installer. Install steps are below.</p>
           <p><a href="files/Injustice2-Accessibility-FULL-2026-08-26.zip" download>Download the full package (.zip, 2.7 MB)</a></p>
-          <div class="tags">
-            <span class="tag">Accessibility</span>
-            <span class="tag">Screen reader</span>
-            <span class="tag">Full install</span>
-          </div>
         </article>
 
         <article class="work-item">
@@ -74,10 +69,6 @@
           <p class="meta">Windows &middot; Steam &middot; Two mod files, upgrade only</p>
           <p>For people who already have the mod installed and working. Close the game, then copy <code>Injustice2.Accessibility.dll</code> and <code>Injustice2.Accessibility.deps.json</code> into <code>Binaries\Retail\Reloaded-II\Mods\Injustice2.Accessibility</code> inside your game folder, replacing what is there. If an old <code>Injustice2.Accessibility.pdb</code> is sitting in that folder, delete it; it is a leftover debug file and is not needed. Keep a copy of the old files first if you want a way back. Nothing else changes, and you do not need to run the installer again.</p>
           <p><a href="files/Injustice2-Accessibility-UPDATE-2026-08-26.zip" download>Download the update (.zip, 46 KB)</a></p>
-          <div class="tags">
-            <span class="tag">Accessibility</span>
-            <span class="tag">Update</span>
-          </div>
         </article>
 
       </div>
@@ -158,11 +149,6 @@
           <p class="meta">Windows &middot; Steam &middot; Installer included</p>
           <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen. This build adds audio navigation for the Krypt, and it is a large step up from 0.2.0, which is what used to be on this page.</p>
           <p><a href="files/MK11-Accessibility-0.5.0.zip" download>Download MK11 Accessibility 0.5.0 (.zip, 3.3 MB)</a></p>
-          <div class="tags">
-            <span class="tag">Accessibility</span>
-            <span class="tag">Screen reader</span>
-            <span class="tag">v0.5.0</span>
-          </div>
         </article>
 
       </div>
@@ -269,11 +255,13 @@
   </main>
 
   <footer>
-    &copy; <span id="year">2026</span> GigaSound Project
+    <p>&copy; <span id="year">2026</span> GigaSound Project</p>
+    <p class="visits" id="visits" hidden>Visits: <span id="visit-count"></span></p>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="../counter.js"></script>
 </body>
 </html>

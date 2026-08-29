@@ -52,19 +52,14 @@
 
     <section id="reel" aria-labelledby="reel-heading">
       <h2 id="reel-heading">Audio Reel</h2>
-      <p class="lede">A short montage of recent work. Headphones recommended; most of this is mixed binaurally.</p>
       <div class="reel">
-        <p><strong>Reel 2026</strong> is coming soon. For now, listen to the featured piece below or browse the full work section.</p>
-        <audio controls aria-label="Featured sample skit">
-          <source src="../audio/sample-skit.mp3" type="audio/mpeg">
-          Your browser does not support the audio element.
-        </audio>
+        <p>The 2026 reel is still being cut. Until it lands, the pieces under Selected Work are the best sample of what I do. Headphones recommended; most of it is mixed binaurally.</p>
       </div>
     </section>
 
     <section id="work" aria-labelledby="work-heading">
       <h2 id="work-heading">Selected Work</h2>
-      <p class="lede">A growing collection of skits, sound design, and binaural pieces. Each one was written, designed, and mixed by me.</p>
+      <p class="lede">Written, designed, and mixed by me.</p>
 
       <div class="work-grid">
 
@@ -76,11 +71,6 @@
             <source src="../audio/sample-skit.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
-          <div class="tags">
-            <span class="tag">Voice</span>
-            <span class="tag">Production</span>
-            <span class="tag">Mix</span>
-          </div>
         </article>
 
         <article class="work-item">
@@ -91,11 +81,6 @@
             <source src="../audio/sample-sfx.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
           </audio>
-          <div class="tags">
-            <span class="tag">Binaural</span>
-            <span class="tag">Spatial</span>
-            <span class="tag">Demo</span>
-          </div>
         </article>
 
         <!--
@@ -107,10 +92,6 @@
             <audio controls aria-label="Descriptive label for screen readers">
               <source src="../audio/FILENAME.mp3" type="audio/mpeg">
             </audio>
-            <div class="tags">
-              <span class="tag">Tag</span>
-              <span class="tag">Tag</span>
-            </div>
           </article>
         -->
 
@@ -132,19 +113,12 @@
           <h3>Accessibility Tester</h3>
           <p class="meta">University of Colorado Boulder &middot; Part-time &middot; August 2022 &ndash; Present</p>
           <p>Audit software, applications, and digital content for accessibility: real-world usability testing with screen readers and assistive technology. Lived-experience perspective on how blind and low-vision users actually navigate digital products.</p>
-          <div class="tags">
-            <span class="tag">Screen readers</span>
-            <span class="tag">Assistive tech</span>
-            <span class="tag">WCAG</span>
-            <span class="tag">UX audit</span>
-          </div>
         </article>
       </div>
     </section>
 
     <section id="tools" aria-labelledby="tools-heading">
       <h2 id="tools-heading">Tools &amp; Skills</h2>
-      <p class="lede">What I use and what I do.</p>
       <div class="tools" role="list">
         <span class="tag" role="listitem">Reaper (primary DAW)</span>
         <span class="tag" role="listitem">Binaural mixing</span>
@@ -166,13 +140,12 @@
       <ul class="links-list" role="list">
         <li><a href="https://www.youtube.com/channel/UCJtEGSjQM6nEQi46Tftv8HQ" target="_blank" rel="noopener">YouTube: The GigaSound Project</a>. Skits, experiments, and immersive audio.</li>
         <li><a href="https://www.linkedin.com/in/paul-seigneur-5a7320377/" target="_blank" rel="noopener">LinkedIn</a></li>
-        <li><a href="../projects/">Projects &amp; Releases</a>: games, NVDA add-ons, music, and more.</li>
       </ul>
     </section>
 
     <section id="contact" class="contact" aria-labelledby="contact-heading">
       <h2 id="contact-heading">Contact</h2>
-      <p class="lede">Got a project? Want to collaborate? Send me a message.</p>
+      <p class="lede">Got a project, or want to collaborate? Send me a message.</p>
       <form action="https://formspree.io/f/xreyolkp" method="POST">
         <label>
           Your email
@@ -189,11 +162,13 @@
   </main>
 
   <footer>
-    &copy; <span id="year">2026</span> Paul Seigneur III &middot; GigaSound Project
+    <p>&copy; <span id="year">2026</span> Paul Seigneur III &middot; GigaSound Project</p>
+    <p class="visits" id="visits" hidden>Visits: <span id="visit-count"></span></p>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="../counter.js"></script>
 </body>
 </html>

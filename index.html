@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GigaSound Project</title>
-  <meta name="description" content="GigaSound Project: audio portfolio and a collection of released projects: games, NVDA add-ons, music, and more.">
+  <meta name="description" content="GigaSound Project: the audio portfolio of Paul Seigneur III, plus games, web toys, and free screen reader mods for games.">
 
   <meta property="og:title" content="GigaSound Project">
-  <meta property="og:description" content="Audio portfolio, games, NVDA add-ons, and music.">
+  <meta property="og:description" content="Sound design, music, voice, and accessibility work by Paul Seigneur III.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="images/logo.png">
 
@@ -21,51 +21,45 @@
   <a href="#main" class="skip-link">Skip to main content</a>
 
   <div class="site-bar" role="banner">
-    <a href="./" class="brand" aria-label="Home, GigaSound Project">
+    <span class="brand">
       <img src="images/logo.png" alt="" aria-hidden="true">
       <span>GigaSound Project</span>
-    </a>
-    <nav aria-label="Site sections">
-      <a href="portfolio/">Portfolio</a>
-      <a href="projects/">Projects</a>
-      <a href="mods/">Access Mods</a>
-    </nav>
+    </span>
   </div>
 
-  <main id="main" class="router-main" aria-labelledby="hero-heading">
+  <main id="main" class="router-main">
     <div class="router-hero">
       <img src="images/logo.png" alt="" class="logo" aria-hidden="true">
-      <h1 id="hero-heading">GigaSound Project</h1>
-      <p class="tagline">Sound design &middot; Music &middot; Voice &middot; Accessibility</p>
+      <h1>GigaSound Project</h1>
+      <p class="tagline">I'm Paul Seigneur III. I design sound, write music, do voice work, and build screen reader mods for games.</p>
     </div>
 
     <nav class="router-cards" aria-label="Site sections">
-      <a class="router-card" href="portfolio/" aria-describedby="portfolio-desc">
-        <h2>Portfolio &amp; Hire Me</h2>
-        <p id="portfolio-desc">Audio reel, selected work, binaural pieces, experience, and contact. Start here if you're looking to hire me for sound design, voice, or music.</p>
-        <span class="arrow" aria-hidden="true">Enter portfolio &rarr;</span>
+      <a class="router-card" href="portfolio/">
+        <span class="card-title">Portfolio and hire me</span>
+        <span class="card-note">Reel, selected work, and contact.</span>
       </a>
 
-      <a class="router-card" href="projects/" aria-describedby="projects-desc">
-        <h2>Projects &amp; Releases</h2>
-        <p id="projects-desc">Games, NVDA add-ons, music releases, YouTube, and other things I've built and shipped. Start here if you're just exploring.</p>
-        <span class="arrow" aria-hidden="true">Browse projects &rarr;</span>
+      <a class="router-card" href="projects/">
+        <span class="card-title">Projects and releases</span>
+        <span class="card-note">Games, web toys, and video.</span>
       </a>
 
-      <a class="router-card" href="mods/" aria-describedby="mods-desc">
-        <h2>Access Mods</h2>
-        <p id="mods-desc">Screen reader mods that make games speak. Injustice 2 and Mortal Kombat 11, free to download. Start here if you came for the fighting game mods.</p>
-        <span class="arrow" aria-hidden="true">Get the mods &rarr;</span>
+      <a class="router-card" href="mods/">
+        <span class="card-title">Access Mods</span>
+        <span class="card-note">Free screen reader mods for Injustice 2 and Mortal Kombat 11.</span>
       </a>
     </nav>
   </main>
 
   <footer>
-    &copy; <span id="year">2026</span> GigaSound Project
+    <p>&copy; <span id="year">2026</span> GigaSound Project</p>
+    <p class="visits" id="visits" hidden>Visits: <span id="visit-count"></span></p>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script src="counter.js"></script>
 </body>
 </html>
