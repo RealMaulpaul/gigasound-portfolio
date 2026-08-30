@@ -3,16 +3,16 @@
                  "version":  "0.6.0",
                  "released":  "2026-08-30",
                  "url":  "https://www.gigasoundproject.com/mods/files/MK11-Accessibility-0.6.0.zip",
-                 "sha256":  "5398F9937AE16068112F6C502B7A46557D064C12DD493BC8E177487CC8677DF3",
-                 "size":  3514043,
+                 "sha256":  "10FE273B294EB14733070A1774C4CA6BE086C685F475ADC7C17F3F5CB672F626",
+                 "size":  3514267,
                  "notes":  "One-key bug reports with F7, and an updater. Menu reading is unchanged."
              },
     "ij2":  {
                 "version":  "0.6.0",
                 "released":  "2026-08-30",
                 "url":  "https://www.gigasoundproject.com/mods/files/Injustice2-Accessibility-0.6.0.zip",
-                "sha256":  "01FD9ED5F6E87B8541A31E508FBC5433AC4B88D097C78C5B31AE902EBE228BD1",
-                "size":  2876508,
+                "sha256":  "0611E49717DC4B0D2E2BB251EE673F3D6F90E60281E060426DBD6973B2D7568C",
+                "size":  2876698,
                 "notes":  "One-key bug reports with F11, and an updater. Menu reading is unchanged."
             }
 }
