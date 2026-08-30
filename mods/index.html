@@ -54,21 +54,21 @@
 
     <section id="injustice2" aria-labelledby="injustice2-heading">
       <h2 id="injustice2-heading">Injustice 2</h2>
-      <p class="lede">Build dated 26 August 2026. Steam version on Windows.</p>
+      <p class="lede">Version 0.6.0, 30 August 2026. Steam version on Windows.</p>
       <div class="work-grid">
 
         <article class="work-item">
           <h3>Injustice 2 Accessibility, full package</h3>
           <p class="meta">Windows &middot; Steam &middot; Includes loader, launcher and installer</p>
           <p>Start here if you have never installed the mod before. This is the complete package: the accessibility mod, the Reloaded II loader underneath it, the launcher and the installer. Install steps are below.</p>
-          <p><a href="files/Injustice2-Accessibility-FULL-2026-08-26.zip" download>Download the full package (.zip, 2.7 MB)</a></p>
+          <p><a href="files/Injustice2-Accessibility-0.6.0.zip" download>Download Injustice 2 Accessibility 0.6.0 (.zip, 2.7 MB)</a></p>
         </article>
 
         <article class="work-item">
-          <h3>Injustice 2 Accessibility, update only</h3>
-          <p class="meta">Windows &middot; Steam &middot; Two mod files, upgrade only</p>
-          <p>For people who already have the mod installed and working. Close the game, then copy <code>Injustice2.Accessibility.dll</code> and <code>Injustice2.Accessibility.deps.json</code> into <code>Binaries\Retail\Reloaded-II\Mods\Injustice2.Accessibility</code> inside your game folder, replacing what is there. If an old <code>Injustice2.Accessibility.pdb</code> is sitting in that folder, delete it; it is a leftover debug file and is not needed. Keep a copy of the old files first if you want a way back. Nothing else changes, and you do not need to run the installer again.</p>
-          <p><a href="files/Injustice2-Accessibility-UPDATE-2026-08-26.zip" download>Download the update (.zip, 46 KB)</a></p>
+          <h3>Already have it installed?</h3>
+          <p class="meta">Windows &middot; Steam &middot; No separate update download</p>
+          <p>There is no longer a separate update package. Download the full package above, unzip it, and run <strong>Check for Updates</strong> inside it. It finds your install, replaces only what changed, and leaves the registry entry and the launcher alone, so you do not need to run the installer again or use administrator rights.</p>
+          <p>After you have run it once it lives in your Documents folder, in a folder called <code>Injustice 2 Accessibility</code>, next to any bug reports you write with <kbd>F11</kbd>. From then on that is the only thing you need to run to stay up to date.</p>
         </article>
 
       </div>
@@ -94,7 +94,13 @@
       <h3>Uninstalling</h3>
       <p>Open a command prompt in the <code>Binaries\Retail</code> folder and run <code>Injustice2_Installer.exe /uninstall</code> as administrator. It will say "Mod uninstalled. The game will now launch without the mod." The game then starts normally, and you can delete the mod files afterwards if you want them gone.</p>
 
-      <h3>What is new in this build</h3>
+      <h3>What is new in 0.6.0: reporting a problem is one key</h3>
+      <p>Press <kbd>F11</kbd> at any time and the mod writes a single zip file into your Documents folder, in a folder called <code>Injustice 2 Accessibility</code>. It holds every log, the most recent screenshots and a summary of your setup. Nothing has to be switched on first and there is nothing else to collect. Your Windows account name is stripped out before the file is written.</p>
+      <p>The same folder holds <strong>Check for Updates</strong>, which replaces the separate update download. It also repairs one thing quietly: the package stores the location of your game in a settings file, and until now that file shipped pointing at the default Steam folder. If your Steam library is on another drive it was wrong, and the mod may never have loaded for you. Running Check for Updates once fixes it.</p>
+      <p>Two problems reported after the last release are <em>not</em> fixed here, and both are real: control customization does not read, and tutorial text reads inconsistently. Both are being worked on. If you hit either, F11 while it happens is exactly what is needed.</p>
+      <p>How the menus read is otherwise unchanged.</p>
+
+      <h3>What was new in the previous build</h3>
       <ul class="links-list" role="list">
         <li>Move lists now carry the frame data. On a move you hear the name and position, a short note on what the move does, and then the numbers: move type, start up, active, recover, damage, block damage, block advantage, hit advantage and cancel. Columns the game leaves empty are skipped rather than read as "not applicable". Moves marked as ability moves, or as affected by strength or by an ability, say so. Section headings read their own name instead of repeating the move you were last on, and tagging a move with the Y button announces the new count, for example "tagged, 1 of 10".</li>
         <li>Diagnostic logging is off unless you ask for it. Earlier builds wrote a detailed log the whole time you played, which grew to megabytes on a machine that was not chasing a bug. Press F10 when you want it.</li>
@@ -121,6 +127,7 @@
         <li><strong>F8</strong>: repeat the last story mode branching choice.</li>
         <li><strong>F9</strong>: repeat the last thing spoken, in full.</li>
         <li><strong>F10</strong>: turn diagnostic logging on or off. It is off unless you switch it on.</li>
+        <li><strong>F11</strong>: write a complete bug report into your Documents folder, in a folder called <code>Injustice 2 Accessibility</code>. If anything is wrong, press F11 while it is happening and send that file.</li>
         <li><strong>Right stick click</strong>: repeats the last line, same as F9. In a tutorial lesson it re-reads the lesson instead.</li>
       </ul>
       <p>F4 is the read-details key in this build. Older builds used F2, which was freed up so the separate I2Hook cheat panel can use it.</p>
@@ -129,11 +136,13 @@
       <ul class="links-list" role="list">
         <li>The direction announced during story mode quick time events can be wrong.</li>
         <li>The character tutorial list, where you pick which tutorial to run, does not read well yet.</li>
+        <li>Control customization does not read. The list of options reads, but the screen where you actually reassign buttons does not tell the mod which entry you are on. Reported after the August release and being worked on.</li>
+        <li>Tutorial text can read inconsistently, particularly in the basic tutorial. Also reported after the August release.</li>
         <li>Guild screens other than the join page, the sell popup for individual items, and some detail panels are not covered.</li>
       </ul>
 
       <h3>About logging</h3>
-      <p>The mod keeps one small file, <code>AccessKit.log</code>, which records whether it loaded and what it hooked. That one is always written and stays small. The detailed diagnostic logs are off: they only start when you press F10, and they stop again on a second press or when you close the game. If you are coming from an older build, the mod folder probably holds a large <code>AccessKit_dump.log</code> from back when logging ran all the time. Any file in that folder whose name starts with <code>AccessKit_</code> is safe to delete while the game is closed.</p>
+      <p>The mod keeps one small file, <code>AccessKit.log</code>, which records whether it loaded and what it hooked. That one is always written and stays small. The detailed diagnostic logs are off: they only start when you press F10, and they stop again on a second press or when you close the game. To report a problem you no longer need to collect anything by hand — press F11 and send the zip it writes. If you can, press F10 first and reproduce the problem before pressing F11, since the detailed log makes the report far more useful. If you are coming from an older build, the mod folder probably holds a large <code>AccessKit_dump.log</code> from back when logging ran all the time. Any file in that folder whose name starts with <code>AccessKit_</code> is safe to delete while the game is closed.</p>
 
       <h3>Credits</h3>
       <p>The original Injustice 2 accessibility mod, the launcher and the installer are by Amethyst. This build extends that work with a lot of additional screen coverage. The loader underneath is <a href="https://github.com/Reloaded-Project/Reloaded-II" target="_blank" rel="noopener">Reloaded II</a> by Sewer56, and speech goes through the prism library.</p>
@@ -141,14 +150,14 @@
 
     <section id="mk11" aria-labelledby="mk11-heading">
       <h2 id="mk11-heading">Mortal Kombat 11</h2>
-      <p class="lede">Version 0.5.0, 26 August 2026. Steam version on Windows.</p>
+      <p class="lede">Version 0.6.0, 30 August 2026. Steam version on Windows.</p>
       <div class="work-grid">
 
         <article class="work-item">
-          <h3>MK11 Accessibility 0.5.0</h3>
+          <h3>MK11 Accessibility 0.6.0</h3>
           <p class="meta">Windows &middot; Steam &middot; Installer included</p>
-          <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen. This build adds audio navigation for the Krypt, and it is a large step up from 0.2.0, which is what used to be on this page.</p>
-          <p><a href="files/MK11-Accessibility-0.5.0.zip" download>Download MK11 Accessibility 0.5.0 (.zip, 3.3 MB)</a></p>
+          <p>Mortal Kombat 11 has no screen reader support at all. This mod hooks the game's interface code and speaks the real text it is drawing, and it knows which item you are actually sitting on rather than guessing from the screen. This build makes reporting a problem a single keypress, and adds an updater so you do not have to come back here for the next version.</p>
+          <p><a href="files/MK11-Accessibility-0.6.0.zip" download>Download MK11 Accessibility 0.6.0 (.zip, 3.4 MB)</a></p>
         </article>
 
       </div>
@@ -170,6 +179,13 @@
       </ol>
       <p>Upgrading from an earlier version is the same process. Run <code>Install.bat</code> again and it will replace what is already there.</p>
       <p>Start the game with <code>MK11.exe</code>, not <code>MK11_DX12.exe</code>. That is a different build of the game and the mod will refuse to attach rather than risk breaking anything. If it worked you will hear "Mortal Kombat 11 accessibility loaded" a few seconds after the window appears.</p>
+
+      <h3>What is new in 0.6.0: reporting a problem is one key</h3>
+      <p>Press <kbd>F7</kbd> at any time and the mod writes a single zip file into your Documents folder, in a folder called <code>MK11 Accessibility</code>. It holds every log, a snapshot of the screen you were on, and a summary of your setup. Send that file and there is nothing else to collect.</p>
+      <p>Nothing has to be switched on first, no folder inside <code>Program Files</code> has to be found, and there is no longer a right and a wrong file to send. Your Windows account name is stripped out of everything in the zip before it is written.</p>
+      <p>That same Documents folder now also holds <strong>Check for Updates</strong>. Run it and it tells you whether a newer version exists and offers to install it. It checks this site, and it refuses to install anything whose contents do not match what this page says they should be.</p>
+      <p>One more thing, for anyone who tried the Microsoft Store or Game Pass copy and was told "mod loaded, but this game is not supported": that version still does not work, but the mod no longer gives up simply because the game's file has an unexpected name, and it now records enough about your copy to show exactly what differs. If you have that version, press <kbd>F7</kbd> and send the file.</p>
+      <p>How the menus read is unchanged in this version.</p>
 
       <h3>What is new in 0.5.0: finding your way around the Krypt</h3>
       <p>The Krypt is not a menu. It is a three dimensional world you walk around in, so none of the menu reading applies to it, and until now there was nothing there at all. You could hear a chest once you were standing on it, but there was no way to find one. There is now a beacon that points you at the objects around you using sound.</p>
